@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AboutPageParallax from "../components/AboutPageParallax";
-import { useDispatch, useSelector } from "react-redux";
-import { shortNav } from "../action/globalAction";
 
 const About = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
-  const shortNavActive = useSelector((state) => state.shortNav);
-  const dispatch = useDispatch();
   const [selected, setSelected] = useState(1);
   const [clicked, setClicked] = useState(false);
   const mouseEnter = (data) => {
@@ -62,17 +58,17 @@ const About = () => {
       }
     }
   }, [selected, clicked]);
-  const scrollEvent = () => {
-    console.log("scrolled");
-    if (!shortNavActive) {
-      dispatch(shortNav());
-    }
-  };
+
   return (
     <>
-      <div
+      <motion.div
+        key="home"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         className="page-nav d-none d-sm-none d-lg-block bg-white"
         onScroll={() => setClicked(false)}
+        transition={{ duration: 1 }}
       >
         <div className="page-nav__grad grad-bg"></div>
         <motion.div
@@ -147,8 +143,15 @@ const About = () => {
             Space
           </div>
         </div>
-      </div>{" "}
-      <div className="page-left bg-white">
+      </motion.div>{" "}
+      <motion.div
+        className="page-left bg-white"
+        key="aboutvideo"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
         <video
           autoplay="autoplay"
           loop
@@ -163,7 +166,7 @@ const About = () => {
             type="video/mp4"
           />
         </video>
-      </div>
+      </motion.div>
       <div
         className="page-right bg-white"
         onScroll={() => console.log("scrolled")}

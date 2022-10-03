@@ -101,7 +101,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-      <section className="about-section">
+      <section className="about-section" style={{ height: "50vh !important" }}>
         <div ref={fourRef}>
           <h1 className="display-6">Space</h1>
           <p className="py-5 text-secondary">

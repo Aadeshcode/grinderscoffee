@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
 function MyApp({ Component, pageProps }) {
   const queryClient = React.useRef(
     new QueryClient({
@@ -24,9 +25,11 @@ function MyApp({ Component, pageProps }) {
         <Hydrate state={pageProps.dehydratedState}>
           <Provider store={store}>
             <ChakraProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <AnimatePresence>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </AnimatePresence>
             </ChakraProvider>
           </Provider>
           <ReactQueryDevtools initialIsOpen={false} />

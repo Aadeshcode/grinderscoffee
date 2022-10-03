@@ -36,12 +36,16 @@ const MainNavbar = () => {
       setY(250);
     }
   }, [router.pathname, dispatch]); //eslint-disable-line
-
+  const clickNav = () => {
+    dispatch(shortNav());
+    setY(250);
+    dispatch(hoverNavHalt());
+  };
   return (
     <div className="navbar-content-wrapper py-5 ">
       <motion.div
         animate={{ x, y }}
-        transition={{ type: "spring" }}
+        transition={{ type: "spring", duration: "1s", stiffness: 100 }}
         className="flex-center logo-main "
       >
         <Link href={shortNavActive ? `${router.pathname}` : "/"}>
@@ -70,6 +74,7 @@ const MainNavbar = () => {
               className="text-center py-2 navLink"
               onMouseEnter={() => dispatch(hoverNav("ABOUT"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              onClick={() => clickNav()}
             >
               ABOUT
             </li>
@@ -112,10 +117,12 @@ const MainNavbar = () => {
         </ul>
       </nav>
       <div
-        className={
-          router?.pathname !== "/" ? " d-none" : "social flex-center mt-5"
+        className="social flex-center mt-5"
+        style={
+          shortNavActive
+            ? { opacity: 0, transition: "1s all", display: "none" }
+            : { opacity: 1 }
         }
-        
       >
         <IoLogoInstagram style={{ height: "100px", fontSize: "30px" }} />
         <ImFacebook style={{ height: "100px", fontSize: "20px" }} />

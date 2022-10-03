@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const NavHover = ({ active }) => {
-  console.log(active);
+
   return (
     <>
       <div

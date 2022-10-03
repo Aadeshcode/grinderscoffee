@@ -81,7 +81,7 @@ a {
   display: block;
   height: 0.5px;
   width: 50%;
-  padding:0;
+  padding: 0;
   background-color: #848483;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -166,6 +166,10 @@ video {
 }
 img {
   transition: all 0.5s ease;
+}
+.logo-main {
+  position: relative;
+  top: 0px;
 }
 .nav-hover {
   position: fixed;
