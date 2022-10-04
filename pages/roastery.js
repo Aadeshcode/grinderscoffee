@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import AboutPageParallax from "../components/AboutPageParallax";
-
-const About = () => {
+import RoasteryPageParallax from "../components/RoasteryPageParallax";
+const Roastery = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [selected, setSelected] = useState(1);
@@ -58,7 +57,6 @@ const About = () => {
       }
     }
   }, [selected, clicked]);
-
   return (
     <>
       <motion.div
@@ -83,9 +81,6 @@ const About = () => {
         <div className="page-nav__no-wrapper">
           <button
             className="page-nav__no js-btn this-active"
-            data-id="0"
-            data-href="https://noccoffeeco.com/en/about-us/curation/"
-            data-headertitle="Curation - NOC COFFEE CO."
             // style="opacity: 1;"
             onMouseEnter={() => mouseEnter(0)}
             onClick={() => clickEvent(1, 0, 0)}
@@ -95,9 +90,6 @@ const About = () => {
           </button>
           <button
             className="page-nav__no js-btn"
-            data-id="1"
-            data-href="https://noccoffeeco.com/en/about-us/coffee/"
-            data-headertitle="Coffee - NOC COFFEE CO."
             // style="opacity: 1;"
             onMouseEnter={() => mouseEnter(43)}
             onMouseLeave={mouseLeave}
@@ -107,25 +99,11 @@ const About = () => {
           </button>
           <button
             className="page-nav__no js-btn"
-            data-id="2"
-            data-href="https://noccoffeeco.com/en/about-us/food/"
-            data-headertitle="Food - NOC COFFEE CO."
             onMouseEnter={() => mouseEnter(85)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(3, 1200, 85)}
           >
             03
-          </button>
-          <button
-            className="page-nav__no js-btn"
-            data-id="3"
-            data-href="https://noccoffeeco.com/en/about-us/space/"
-            data-headertitle="Sai Ying Pun, Sheung Wan, Wanchai and Central - NOC COFFEE CO."
-            onMouseEnter={() => mouseEnter(128)}
-            onMouseLeave={mouseLeave}
-            onClick={() => clickEvent(4, 1800, 128)}
-          >
-            04
           </button>
         </div>
         <div className="page-nav__lbl-wrapper">
@@ -156,12 +134,12 @@ const About = () => {
           loop
           muted
           playsinline
-          poster="https://noccoffeeco.com/media/2019/03/Home_portrait.jpg"
+          poster="https://noccoffeeco.com/media/2019/03/roastery_phil_new.jpg"
           className="nav-hover__img-item page-left__media"
           data-id="0"
         >
           <source
-            src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
+            src="https://noccoffeeco.com/media/2019/02/roastery_1_new.mp4"
             type="video/mp4"
           />
         </video>
@@ -172,10 +150,9 @@ const About = () => {
           data-id="0"
           data-href="https://noccoffeeco.com/en/about-us/curation/"
           data-headertitle="Curation - NOC COFFEE CO."
-          style={{ _maxHeight: "50vh !important" }}
         >
           <div>
-            <AboutPageParallax
+            <RoasteryPageParallax
               setSelected={setSelected}
               selected={selected}
               clicked={clicked}
@@ -187,4 +164,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Roastery;

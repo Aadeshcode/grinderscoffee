@@ -79,20 +79,26 @@ const MainNavbar = () => {
               ABOUT
             </li>
           </Link>
-          <li
-            className="text-center py-2"
-            onMouseEnter={() => dispatch(hoverNav("ROASTERY"))}
-            onMouseLeave={() => dispatch(hoverNavHalt(""))}
-          >
-            ROASTERY
-          </li>
-          <li
-            className="text-center py-2"
-            onMouseEnter={() => dispatch(hoverNav("LOCATIONS"))}
-            onMouseLeave={() => dispatch(hoverNavHalt(""))}
-          >
-            LOCATIONS
-          </li>
+          <Link href="/roastery">
+            <li
+              className="text-center py-2"
+              onMouseEnter={() => dispatch(hoverNav("ROASTERY"))}
+              onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              onClick={() => clickNav()}
+            >
+              ROASTERY
+            </li>
+          </Link>
+          <Link href="/location">
+            <li
+              className="text-center py-2"
+              onMouseEnter={() => dispatch(hoverNav("LOCATIONS"))}
+              onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              onClick={() => clickNav()}
+            >
+              LOCATIONS
+            </li>
+          </Link>
           <li
             className="text-center py-2"
             onMouseEnter={() => dispatch(hoverNav("EVENTS"))}

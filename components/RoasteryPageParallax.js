@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { shortNav } from "../action/globalAction";
 import { useElementOnScreen } from "../utils/customHooks";
 
-export default function AboutPageParallax({ setSelected, selected, clicked }) {
+export default function RoasteryPageParallax({
+  setSelected,
+  selected,
+  clicked,
+}) {
+  const dispatch = useDispatch();
   const oneRef = useRef();
   const twoRef = useRef();
   const threeRef = useRef();
   const fourRef = useRef();
+  const shortNavActive = useSelector((state) => state.shortNav);
   const [isVisible] = useElementOnScreen(oneRef);
   const google = useElementOnScreen(twoRef);
   const fb = useElementOnScreen(threeRef);
   const fr = useElementOnScreen(fourRef);
-
+  console.log(isVisible);
   useEffect(() => {
     if (!clicked) {
       if (isVisible) {
@@ -23,9 +29,6 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
       }
       if (fb[0]) {
         setSelected(3);
-      }
-      if (fr[0]) {
-        setSelected(4);
       }
     }
   }, [isVisible, google, fb, fr]); //eslint-disable-line
@@ -69,7 +72,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-      <section className="about-section">
+      <section className="about-section" style={{ height: "50vh !important" }}>
         <div ref={threeRef}>
           <h1 className="display-6">Food</h1>
           <p className="py-5">
@@ -85,27 +88,6 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
             <ul>
               <li className="effect-button mt-3">
                 Food Menus
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </section>
-      <section className="about-section" style={{ height: "50vh !important" }}>
-        <div ref={fourRef}>
-          <h1 className="display-6">Space</h1>
-          <p className="py-5 text-secondary">
-            We don’t choose obvious locations; we choose interesting spaces in
-            areas that our minimalist aesthetic can bring calm to the chaos.
-          </p>
-
-          <nav>
-            <ul>
-              <li className="effect-button mt-3">
-                Locations
                 <span></span>
                 <span></span>
                 <span></span>

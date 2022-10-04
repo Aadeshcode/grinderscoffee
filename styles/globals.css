@@ -160,9 +160,9 @@ li {
 }
 video {
   transition: all 0.5s ease;
-  height: 100%;
+  height: 100% !important;
   object-fit: cover;
-  width: 100%;
+  min-width: 100%;
 }
 img {
   transition: all 0.5s ease;
@@ -190,7 +190,7 @@ img {
   pointer-events: none;
 }
 .nav-hover-image {
-  width: 52vw;
+  width: 42vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -223,7 +223,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 58vw;
+  width: 42vw;
 }
 .page-right {
   min-height: 100vh;
@@ -231,7 +231,7 @@ img {
   top: 0;
   right: 0;
   width: 42vw;
-  margin-left: 57vw;
+  margin-left: 58vw;
   height: auto;
   z-index: 2;
 }
