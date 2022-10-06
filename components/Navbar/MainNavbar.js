@@ -33,8 +33,6 @@ const MainNavbar = () => {
       setTimeout(() => {
         dispatch(transitionHalt());
       }, 3000);
-    } else {
-      router.push("/");
     }
   };
 
@@ -65,19 +63,21 @@ const MainNavbar = () => {
     <div className="navbar-content-wrapper py-5 ">
       <motion.div
         animate={{ x, y }}
-        transition={{ duration: 2.5, type: "spring" }}
+        transition={{ duration: 1.5, type: "spring" }}
         className="flex-center logo-main "
         style={{ zIndex: "1000000000000" }}
       >
-        <Image
-          src={"/pics/logo.png"}
-          width="100"
-          height={100}
-          alt="logo"
-          onMouseEnter={() => dispatch(hoverLogo())}
-          onMouseLeave={() => dispatch(hoverLogoHalt())}
-          onClick={clickLogo}
-        />
+        <Link href={shortNavActive ? router.pathname : "/"} scroll={false}>
+          <Image
+            src={"/pics/logo.png"}
+            width="100"
+            height={100}
+            alt="logo"
+            onMouseEnter={() => dispatch(hoverLogo())}
+            onMouseLeave={() => dispatch(hoverLogoHalt())}
+            onClick={clickLogo}
+          />
+        </Link>
       </motion.div>
 
       <motion.nav

@@ -13,8 +13,7 @@ export default function RoasteryPageParallax({
   const twoRef = useRef();
   const threeRef = useRef();
   const fourRef = useRef();
-  const transitionRunning = useSelector((state) => state.transition);
-  const shortNavActive = useSelector((state) => state.shortNav);
+
   const [isVisible] = useElementOnScreen(oneRef);
   const google = useElementOnScreen(twoRef);
   const fb = useElementOnScreen(threeRef);
