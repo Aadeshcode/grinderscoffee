@@ -13,12 +13,12 @@ export default function RoasteryPageParallax({
   const twoRef = useRef();
   const threeRef = useRef();
   const fourRef = useRef();
+  const transitionRunning = useSelector((state) => state.transition);
   const shortNavActive = useSelector((state) => state.shortNav);
   const [isVisible] = useElementOnScreen(oneRef);
   const google = useElementOnScreen(twoRef);
   const fb = useElementOnScreen(threeRef);
   const fr = useElementOnScreen(fourRef);
-  console.log(isVisible);
   useEffect(() => {
     if (!clicked) {
       if (isVisible) {
@@ -30,6 +30,9 @@ export default function RoasteryPageParallax({
       if (fb[0]) {
         setSelected(3);
       }
+    }
+    if (!transitionRunning && !shortNavActive && selected !== 1) {
+      dispatch(shortNav());
     }
   }, [isVisible, google, fb, fr]); //eslint-disable-line
 

@@ -5,6 +5,8 @@ import {
   HOVER_NAV_HALT,
   SHORT_NAV,
   SHORT_NAV_HALT,
+  TRANSITION,
+  TRANSITION_HALT,
 } from "../constants/globalConstants";
 
 export const hoverNav = (data) => (dispatch) => {
@@ -36,5 +38,15 @@ export const shortNav = () => (dispatch) => {
 export const shortNavHalt = () => (dispatch) => {
   dispatch({
     type: SHORT_NAV_HALT,
+  });
+};
+export const runTransition = () => (dispatch) => {
+  dispatch({
+    type: TRANSITION,
+  });
+};
+export const transitionHalt = () => (dispatch) => {
+  dispatch({
+    type: TRANSITION_HALT,
   });
 };

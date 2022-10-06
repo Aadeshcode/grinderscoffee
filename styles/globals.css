@@ -103,11 +103,11 @@ a {
   src: url("../fonts/regular.ttf");
 }
 @font-face {
-  font-family: "bold";
+  font-family: "medium";
   src: url("../fonts/bold.ttf");
 }
 @font-face {
-  font-family: "medium";
+  font-family: "bold";
   src: url("../fonts/medium.ttf");
 }
 @font-face {
@@ -369,4 +369,25 @@ img {
 
 .li:hover .cursor {
   transform: translate(-50%, -50%) scale(8);
+}
+.page-nav-text {
+  font-family: "bold";
+  position: fixed;
+  top: 4%;
+  left: 3%;
+  z-index: 1000000000;
+}
+.page-nav-text-location {
+  font-family: "bold";
+  position: fixed;
+  top: 4%;
+  right: 3%;
+  z-index: 1000000000;
+}
+.section-nav {
+  font-family: "bold";
+  position: fixed;
+  top: 4%;
+  right: 3%;
+  z-index: 1000000000;
 }

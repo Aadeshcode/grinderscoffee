@@ -62,7 +62,7 @@ const About = () => {
   return (
     <>
       <motion.div
-        key="home"
+        key="home-about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -79,7 +79,48 @@ const About = () => {
           }}
           style={{ left: "30px" }}
         ></motion.div>
-
+        {/* section nav start */}
+        <motion.div
+          key="one-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: selected === 1 ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          className="section-nav"
+          transition={{ duration: 1 }}
+        >
+          CURATION
+        </motion.div>
+        <motion.div
+          key="one-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: selected === 2 ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          className="section-nav"
+          transition={{ duration: 1 }}
+        >
+          COFFEE
+        </motion.div>
+        <motion.div
+          key="one-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: selected === 3 ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          className="section-nav"
+          transition={{ duration: 1 }}
+        >
+          FOOD
+        </motion.div>
+        <motion.div
+          key="one-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: selected === 4 ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          className="section-nav"
+          transition={{ duration: 1 }}
+        >
+          SPACE
+        </motion.div>
+        {/* section nav end */}
         <div className="page-nav__no-wrapper">
           <button
             className="page-nav__no js-btn this-active"
@@ -145,9 +186,9 @@ const About = () => {
       </motion.div>{" "}
       <motion.div
         className="page-left bg-white"
-        key="aboutvideo"
+        key="aboutvideo1 "
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: selected === 1 ? 1 : 0 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
@@ -162,6 +203,76 @@ const About = () => {
         >
           <source
             src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </motion.div>
+      {/* //second video */}
+      <motion.div
+        className="page-left bg-white"
+        key="aboutvideo2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: selected === 2 ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <video
+          autoplay="autoplay"
+          loop
+          muted
+          playsinline
+          poster="https://noccoffeeco.com/media/2019/03/about_latte_new.jpg"
+          className="page-left__media this-active"
+          data-id="1"
+        >
+          <source
+            src="https://noccoffeeco.com/media/2019/03/about_latte.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </motion.div>
+      <motion.div
+        className="page-left bg-white"
+        key="aboutvideo3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: selected === 3 ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <video
+          autoplay="autoplay"
+          loop
+          muted
+          playsinline
+          poster="https://noccoffeeco.com/media/2021/05/Food_2.jpg"
+          className="page-left__media this-active"
+          data-id="2"
+        >
+          <source
+            src="https://noccoffeeco.com/media/2021/05/Food.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </motion.div>
+      <motion.div
+        className="page-left bg-white"
+        key="aboutvideo5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: selected === 4 ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <video
+          autoplay="autoplay"
+          loop
+          muted
+          playsinline
+          poster="https://noccoffeeco.com/media/2019/03/about_food-1.jpg"
+          class="page-left__media this-active"
+          data-id="3"
+        >
+          <source
+            src="https://noccoffeeco.com/media/2019/02/about_space.mp4"
             type="video/mp4"
           />
         </video>

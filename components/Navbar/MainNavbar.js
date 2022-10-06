@@ -8,25 +8,34 @@ import {
   hoverLogoHalt,
   hoverNav,
   hoverNavHalt,
+  runTransition,
   shortNav,
   shortNavHalt,
+  transitionHalt,
 } from "../../action/globalAction";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 const MainNavbar = () => {
   const shortNavActive = useSelector((state) => state.shortNav);
+  const transitionRunning = useSelector((state) => state.transition);
   const dispatch = useDispatch();
   const router = useRouter();
   const [x, setX] = useState(0);
   const [y, setY] = useState(250);
+
   const clickLogo = () => {
     if (shortNavActive) {
       dispatch(shortNavHalt());
       setX(0);
       setY(0);
+      dispatch(runTransition());
+      setTimeout(() => {
+        dispatch(transitionHalt());
+      }, 2000);
     }
   };
+
   useEffect(() => {
     if (router.pathname === "/") {
       dispatch(shortNavHalt());
@@ -41,6 +50,13 @@ const MainNavbar = () => {
     setY(250);
     dispatch(hoverNavHalt());
   };
+  useEffect(() => {
+    if (shortNavActive && !transitionRunning) {
+      setY(250);
+      console.log("Traiggere");
+    }
+  }, [shortNavActive]); //eslint-disable-line
+
   return (
     <div className="navbar-content-wrapper py-5 ">
       <motion.div

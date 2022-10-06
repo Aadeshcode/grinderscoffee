@@ -5,12 +5,14 @@ import {
   LogoHoverReducer,
   NavHoverReducer,
   ShortNavReducer,
+  TransitionRunningReducer,
 } from "../reducers/globalState";
 
 const reducer = combineReducers({
   navActive: NavHoverReducer,
   logoHovered: LogoHoverReducer,
   shortNav: ShortNavReducer,
+  transition: TransitionRunningReducer,
 });
 function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware];

@@ -6,3 +6,5 @@ export const HOVER_LOGO_HALT = "HOVER_LOGO_HALT";
 export const HOVER_NAV_HALT = "HOVER_NAV_HALT";
 export const SHORT_NAV = "SHORT_NAV";
 export const SHORT_NAV_HALT = "SHORT_NAV_HALT";
+export const TRANSITION = "TRANSITION";
+export const TRANSITION_HALT = "TRANSITION_HALT";

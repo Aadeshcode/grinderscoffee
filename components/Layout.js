@@ -1,14 +1,16 @@
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { shortNav } from "../action/globalAction";
+import React, { useRef } from "react";
+import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import MainNavbar from "./Navbar/MainNavbar";
 import NavHover from "./Navbar/NavHover";
+import RouteShow from "./RouteShow";
+
 const Layout = ({ children }) => {
   const cursor = useRef(null);
+
   const activeNav = useSelector((state) => state.navActive);
   const activeLogo = useSelector((state) => state.logoHovered);
   const shortNavActive = useSelector((state) => state.shortNav);
-  const dispatch = useDispatch();
   const editCursor = (e) => {
     const { clientX: x, clientY: y } = e;
     cursor.current.style.left = x + "px";
@@ -17,6 +19,7 @@ const Layout = ({ children }) => {
 
   return (
     <main onMouseMove={(e) => editCursor(e)}>
+      <RouteShow />
       <div
         id="mouse"
         className={

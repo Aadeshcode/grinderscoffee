@@ -5,6 +5,8 @@ import {
   HOVER_NAV_HALT,
   SHORT_NAV,
   SHORT_NAV_HALT,
+  TRANSITION,
+  TRANSITION_HALT,
 } from "../constants/globalConstants";
 
 export const NavHoverReducer = (state = "", action) => {
@@ -32,6 +34,16 @@ export const ShortNavReducer = (state = false, action) => {
     case SHORT_NAV:
       return true;
     case SHORT_NAV_HALT:
+      return false;
+    default:
+      return state;
+  }
+};
+export const TransitionRunningReducer = (state = false, action) => {
+  switch (action.type) {
+    case TRANSITION:
+      return true;
+    case TRANSITION_HALT:
       return false;
     default:
       return state;
