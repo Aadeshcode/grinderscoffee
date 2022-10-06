@@ -52,13 +52,14 @@ const MainNavbar = () => {
   };
 
   useEffect(() => {
-    scrollY.onChange((latest) => {
-      if (!shortNavActive && !transitionRunning && router.pathname !== "/") {
+    if (!shortNavActive && !transitionRunning && router.pathname !== "/") {
+      scrollY.onChange((latest) => {
         dispatch(shortNav());
         setY(250);
-      }
-    });
-  }, [scrollY, transitionRunning, shortNavActive]); //eslint-disable-line
+        console.log("Sasdasd");
+      });
+    }
+  }, [scrollY, transitionRunning, shortNavActive, router.pathname]); //eslint-disable-line
   return (
     <div className="navbar-content-wrapper py-5 ">
       <motion.div
