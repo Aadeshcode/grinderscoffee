@@ -8,9 +8,6 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
   const twoRef = useRef();
   const threeRef = useRef();
   const fourRef = useRef();
-  const dispatch = useDispatch();
-  const transitionRunning = useSelector((state) => state.transition);
-  const shortNavActive = useSelector((state) => state.shortNav);
   const [isVisible] = useElementOnScreen(oneRef);
   const google = useElementOnScreen(twoRef);
   const fb = useElementOnScreen(threeRef);
@@ -30,9 +27,6 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
       if (fr[0]) {
         setSelected(4);
       }
-    }
-    if (!transitionRunning && !shortNavActive && selected !== 1) {
-      dispatch(shortNav());
     }
   }, [isVisible, google, fb, fr]); //eslint-disable-line
 

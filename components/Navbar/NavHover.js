@@ -1,10 +1,17 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const NavHover = ({ active }) => {
-
+  const shortNavActive = useSelector((state) => state.shortNav);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: shortNavActive ? 0 : 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div
         className="nav-hover"
         style={active ? { backgroundColor: "white" } : {}}
@@ -196,7 +203,7 @@ const NavHover = ({ active }) => {
           Best Coffee Items In Chitwan
         </p>
       </div>
-    </>
+    </motion.div>
   );
 };
 

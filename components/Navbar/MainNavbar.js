@@ -15,7 +15,7 @@ import {
 } from "../../action/globalAction";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 const MainNavbar = () => {
   const shortNavActive = useSelector((state) => state.shortNav);
   const transitionRunning = useSelector((state) => state.transition);
@@ -23,16 +23,18 @@ const MainNavbar = () => {
   const router = useRouter();
   const [x, setX] = useState(0);
   const [y, setY] = useState(250);
-
+  const { scrollY } = useScroll();
   const clickLogo = () => {
     if (shortNavActive) {
       dispatch(shortNavHalt());
+      dispatch(runTransition());
       setX(0);
       setY(0);
-      dispatch(runTransition());
       setTimeout(() => {
         dispatch(transitionHalt());
-      }, 2000);
+      }, 3000);
+    } else {
+      router.push("/");
     }
   };
 
@@ -50,39 +52,41 @@ const MainNavbar = () => {
     setY(250);
     dispatch(hoverNavHalt());
   };
-  useEffect(() => {
-    if (shortNavActive && !transitionRunning) {
-      setY(250);
-      console.log("Traiggere");
-    }
-  }, [shortNavActive]); //eslint-disable-line
 
+  useEffect(() => {
+    scrollY.onChange((latest) => {
+      if (!shortNavActive && !transitionRunning) {
+        dispatch(shortNav());
+        setY(250);
+      }
+    });
+  }, [scrollY, transitionRunning, shortNavActive]); //eslint-disable-line
   return (
     <div className="navbar-content-wrapper py-5 ">
       <motion.div
         animate={{ x, y }}
-        transition={{ type: "spring", duration: "1s", stiffness: 100 }}
+        transition={{ duration: 2.5, type: "spring" }}
         className="flex-center logo-main "
+        style={{ zIndex: "1000000000000" }}
       >
-        <Link href={shortNavActive ? `${router.pathname}` : "/"}>
-          <Image
-            src={"/pics/logo.png"}
-            width="100"
-            height={100}
-            alt="logo"
-            onMouseEnter={() => dispatch(hoverLogo())}
-            onMouseLeave={() => dispatch(hoverLogoHalt())}
-            onClick={clickLogo}
-          />
-        </Link>
+        <Image
+          src={"/pics/logo.png"}
+          width="100"
+          height={100}
+          alt="logo"
+          onMouseEnter={() => dispatch(hoverLogo())}
+          onMouseLeave={() => dispatch(hoverLogoHalt())}
+          onClick={clickLogo}
+        />
       </motion.div>
-      <nav
+
+      <motion.nav
+        key="aboutvideo2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: shortNavActive ? 0 : 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1, type: "spring" }}
         className="flex-center mt-5"
-        style={
-          shortNavActive
-            ? { opacity: 0, transition: "1s all", display: "none" }
-            : { opacity: 1 }
-        }
       >
         <ul className="mt-5">
           <Link href="/about">
@@ -137,7 +141,7 @@ const MainNavbar = () => {
             MENU
           </li>
         </ul>
-      </nav>
+      </motion.nav>
       <div
         className="social flex-center mt-5"
         style={

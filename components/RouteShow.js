@@ -6,7 +6,7 @@ const RouteShow = () => {
   return (
     <>
       <motion.div
-        key="home-about"
+        key="home-about1"
         initial={{ opacity: 0 }}
         animate={{ opacity: router.pathname === "/about" ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -16,7 +16,7 @@ const RouteShow = () => {
         ABOUT
       </motion.div>
       <motion.div
-        key="home-about"
+        key="home-about2"
         initial={{ opacity: 0 }}
         animate={{ opacity: router.pathname === "/roastery" ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -26,7 +26,7 @@ const RouteShow = () => {
         ROASTERY
       </motion.div>
       <motion.div
-        key="home-about"
+        key="home-about3"
         initial={{ opacity: 0 }}
         animate={{ opacity: router.pathname === "/location" ? 1 : 0 }}
         exit={{ opacity: 0 }}

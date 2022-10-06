@@ -31,9 +31,6 @@ export default function RoasteryPageParallax({
         setSelected(3);
       }
     }
-    if (!transitionRunning && !shortNavActive && selected !== 1) {
-      dispatch(shortNav());
-    }
   }, [isVisible, google, fb, fr]); //eslint-disable-line
 
   return (
