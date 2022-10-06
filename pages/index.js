@@ -20,12 +20,12 @@ export default function Home() {
 
         <div className="home-vid d-none d-lg-block">
           <video
-            autoplay="autoplay"
+            autoPlay="autoplay"
             loop
             muted
-            playsinline
+            playsInline
             poster="https://noccoffeeco.com/media/2019/03/home_gough.jpg"
-            class="home-vid__vid"
+            className="home-vid__vid"
           >
             <source src="/pics/home_gough.mp4" type="video/mp4" />
           </video>

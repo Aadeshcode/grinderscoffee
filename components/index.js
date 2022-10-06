@@ -4,10 +4,10 @@ const index = () => {
   return (
     <div>
       <video
-        autoplay=""
-        loop=""
-        muted=""
-        playsinline=""
+        autoPlay="autoplay"
+        loop
+        muted
+        playsInline
         poster="https://noccoffeeco.com/media/2019/03/home_gough.jpg"
         className="home-vid__vid"
       >

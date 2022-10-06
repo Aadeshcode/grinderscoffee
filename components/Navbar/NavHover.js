@@ -18,10 +18,10 @@ const NavHover = ({ active }) => {
       >
         <div className="nav-hover-image">
           <video
-            autoplay="autoplay"
+            autoPlay="autoPlay"
             loop
             muted
-            playsInLine
+            playsInline
             poster="https://noccoffeeco.com/media/2021/04/About.jpg"
             className="nav-hover__img-item page-left__media"
             data-id="0"
@@ -35,10 +35,10 @@ const NavHover = ({ active }) => {
         </div>
         <div className="nav-hover-image">
           <video
-            autoplay="autoplay"
+            autoPlay="autoPlay"
             loop
             muted
-            playsInLine
+            playsInline
             poster="https://noccoffeeco.com/media/2019/03/Home_portrait.jpg"
             className="nav-hover__img-item page-left__media"
             data-id="0"
@@ -91,10 +91,10 @@ const NavHover = ({ active }) => {
         </div>
         <div className="nav-hover-image">
           <video
-            autoplay="autoplay"
+            autoPlay="autoPlay"
             loop
             muted
-            playsInLine
+            playsInline
             poster="https://noccoffeeco.com/media/2019/03/roastery.jpg"
             className="nav-hover__img-item page-left__media"
             data-id="0"

@@ -12,7 +12,7 @@ const Location = () => {
         transition={{ duration: 1 }}
       >
         <div
-          class="mapouter"
+          className="mapouter"
           style={{
             position: "relative",
             textAlign: "right",
@@ -21,7 +21,7 @@ const Location = () => {
           }}
         >
           <div
-            class="gmap_canvas"
+            className="gmap_canvas"
             style={{
               overflow: "hidden",
               background: "none!important",

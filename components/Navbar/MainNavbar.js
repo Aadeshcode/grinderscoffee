@@ -53,7 +53,7 @@ const MainNavbar = () => {
 
   useEffect(() => {
     scrollY.onChange((latest) => {
-      if (!shortNavActive && !transitionRunning) {
+      if (!shortNavActive && !transitionRunning && router.pathname !== "/") {
         dispatch(shortNav());
         setY(250);
       }

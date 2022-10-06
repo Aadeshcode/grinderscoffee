@@ -160,13 +160,12 @@ const Roastery = () => {
         transition={{ duration: 1 }}
       >
         <video
-          autoplay="autoplay"
+          autoPlay="autoplay"
           loop
           muted
-          playsinline
+          playsInline
           poster="https://noccoffeeco.com/media/2019/03/roastery_phil_new.jpg"
           className="nav-hover__img-item page-left__media"
-          data-id="0"
         >
           <source
             src="https://noccoffeeco.com/media/2019/02/roastery_1_new.mp4"
@@ -183,10 +182,10 @@ const Roastery = () => {
         transition={{ duration: 1 }}
       >
         <video
-          autoplay="autoplay"
+          autoPlay="autoplay"
           loop
           muted
-          playsinline
+          playsInline
           poster="https://noccoffeeco.com/media/2019/03/about_latte_new.jpg"
           className="page-left__media this-active"
           data-id="1"
@@ -206,10 +205,10 @@ const Roastery = () => {
         transition={{ duration: 1 }}
       >
         <video
-          autoplay="autoplay"
+          autoPlay="autoplay"
           loop
           muted
-          playsinline
+          playsInline
           poster="https://noccoffeeco.com/media/2021/05/Food_2.jpg"
           className="page-left__media this-active"
           data-id="2"

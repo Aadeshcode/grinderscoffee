@@ -8,7 +8,7 @@ export default function RoasteryPageParallax({
   selected,
   clicked,
 }) {
-  const dispatch = useDispatch();
+  
   const oneRef = useRef();
   const twoRef = useRef();
   const threeRef = useRef();
