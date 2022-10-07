@@ -2,17 +2,19 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mobileNavOff, mobileNavOn } from "../../action/globalAction";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 const MobileNavIcon = () => {
   const dispatch = useDispatch();
   const mobileNavActive = useSelector((state) => state.mobileNav);
-
+  const router = useRouter();
   const [scale, setScale] = useState(1);
   const [top, setTop] = useState("85%");
 
   const clickIcon = () => {
     if (mobileNavActive) {
       dispatch(mobileNavOff());
+      router.push("/");
     } else {
       dispatch(mobileNavOn());
     }
@@ -35,12 +37,12 @@ const MobileNavIcon = () => {
       animate={{
         backgroundColor: mobileNavActive
           ? [
-              "hsl(60,1%,31%)",
-              "hsl(0,0%,100%)",
-              "hsl(0,0%,100%)",
-              "hsl(0,0%,100%)",
+              "hsla(60,1%,31%,0.8)",
+              "hsla(0,0%,100%,0.8)",
+              "hsla(0,0%,100%,0.8)",
+              "hsla(0,0%,100%,0.8)",
             ]
-          : ["hsl(0,0%,100%)", "hsl(60,1%,31%)"],
+          : ["hsla(0,0%,100%,0.8)", "hsla(60,1%,31%,0.8)"],
         top,
 
         transform: `translate(-50%) scale(${scale})`,

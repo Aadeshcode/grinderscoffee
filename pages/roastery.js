@@ -58,17 +58,23 @@ const Roastery = () => {
     }
   }, [selected, clicked]);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+    >
       <motion.div
-        key="home"
+        key="aboutvideo-roastery15"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="page-nav d-none d-sm-none d-lg-block bg-white"
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
       >
         <div className="page-nav__grad grad-bg"></div>
         <motion.div
+          key="aboutvideo-roastery15ww"
           className="page-nav__circle"
           animate={{ x, y }}
           transition={{
@@ -78,7 +84,7 @@ const Roastery = () => {
           style={{ left: "30px" }}
         ></motion.div>
         <motion.div
-          key="one-text"
+          key="aboutvideo-roastery4"
           initial={{ opacity: 0 }}
           animate={{ opacity: selected === 1 ? 1 : 0 }}
           exit={{ opacity: 0 }}
@@ -88,7 +94,7 @@ const Roastery = () => {
           CURATION
         </motion.div>
         <motion.div
-          key="one-text"
+          key="aboutvideo-roastery3"
           initial={{ opacity: 0 }}
           animate={{ opacity: selected === 2 ? 1 : 0 }}
           exit={{ opacity: 0 }}
@@ -98,7 +104,7 @@ const Roastery = () => {
           COFFEE
         </motion.div>
         <motion.div
-          key="one-text"
+          key="aboutvideo-roastery2"
           initial={{ opacity: 0 }}
           animate={{ opacity: selected === 3 ? 1 : 0 }}
           exit={{ opacity: 0 }}
@@ -153,7 +159,7 @@ const Roastery = () => {
       </motion.div>{" "}
       <motion.div
         className="page-left bg-white"
-        key="aboutvideo"
+        key="aboutvideo-roastery1"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 1 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -175,7 +181,7 @@ const Roastery = () => {
       </motion.div>
       <motion.div
         className="page-left bg-white"
-        key="aboutvideo2"
+        key="aboutvideo245"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 2 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -198,7 +204,7 @@ const Roastery = () => {
       </motion.div>
       <motion.div
         className="page-left bg-white"
-        key="aboutvideo3"
+        key="aboutvideo453"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 3 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -235,7 +241,7 @@ const Roastery = () => {
           </div>
         </section>
       </div>
-    </>
+    </motion.div>
   );
 };
 

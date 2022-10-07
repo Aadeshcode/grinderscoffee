@@ -30,7 +30,7 @@ const MobileNavbar = () => {
               </li>
             </Link>
             <Link href="/roastery">
-              <li className="text-center py-2">ROASTERY</li>
+              <li className="text-center py-2" onClick={clickEvent}>ROASTERY</li>
             </Link>
             <Link href="/location">
               <li className="text-center py-2">LOCATIONS</li>

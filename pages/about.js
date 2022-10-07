@@ -61,7 +61,13 @@ const About = () => {
   }, [selected, clicked]);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 2 }}
+      key="home-about234"
+    >
       <SectionShow selected={selected} />
       <motion.div
         key="home-about"
@@ -69,7 +75,7 @@ const About = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="page-nav d-none d-sm-none d-lg-block bg-white"
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
       >
         <div className="page-nav__grad grad-bg"></div>
         <motion.div
@@ -252,7 +258,7 @@ const About = () => {
           />
         </section>
       </div>
-    </>
+    </motion.div>
   );
 };
 
