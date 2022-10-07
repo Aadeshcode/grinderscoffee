@@ -9,7 +9,7 @@ export const useElementOnScreen = (ref) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: "-200px",
+      rootMargin: "-100px",
       threshhold: 0,
     };
     const observer = new IntersectionObserver(callbackFunction, options);

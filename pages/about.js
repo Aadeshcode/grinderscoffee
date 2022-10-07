@@ -62,6 +62,7 @@ const About = () => {
 
   return (
     <>
+      <SectionShow selected={selected} />
       <motion.div
         key="home-about"
         initial={{ opacity: 0 }}
@@ -80,7 +81,6 @@ const About = () => {
           }}
           style={{ left: "30px" }}
         ></motion.div>
-        <SectionShow selected={selected} />
         <div className="page-nav__no-wrapper">
           <button
             className="page-nav__no js-btn this-active"

@@ -389,7 +389,7 @@ img {
   position: fixed;
   top: 4%;
   right: 3%;
-  z-index: 1000000000;
+  z-index: 100;
 }
 .mobile-nav-icon {
   position: fixed;
@@ -412,10 +412,17 @@ img {
   .page-left {
     display: none;
   }
+  .page-nav-wrap {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+  }
   .page-right {
-    position: static;
+    position: relative;
     width: 100vw;
     margin: 0;
+    overflow-y: auto;
   }
   .page-section {
     padding: 0;

@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { useRouter } from "next/router";
-const RouteShow = () => {
+const RouteShow = ({ scrolled }) => {
   const router = useRouter();
+
   return (
-    <>
+    <div
+      className="page-nav-wrap"
+      style={scrolled > 300 ? { height: "70px" } : {}}
+    >
       <motion.div
         key="home-about1"
         initial={{ opacity: 0 }}
@@ -35,7 +39,7 @@ const RouteShow = () => {
       >
         LOCATION
       </motion.div>
-    </>
+    </div>
   );
 };
 

@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 const SectionShow = ({ selected }) => {
   return (
-    <div>
+    <div className="section-show">
       <motion.div
-        key="one-text"
+        key="one-text-nav"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 1 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -14,7 +14,7 @@ const SectionShow = ({ selected }) => {
         CURATION
       </motion.div>
       <motion.div
-        key="one-text"
+        key="one-text2-nav"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 2 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -24,7 +24,7 @@ const SectionShow = ({ selected }) => {
         COFFEE
       </motion.div>
       <motion.div
-        key="one-text"
+        key="one-text3-nav"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 3 ? 1 : 0 }}
         exit={{ opacity: 0 }}
@@ -34,7 +34,7 @@ const SectionShow = ({ selected }) => {
         FOOD
       </motion.div>
       <motion.div
-        key="one-text"
+        key="one-text4-nav"
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 4 ? 1 : 0 }}
         exit={{ opacity: 0 }}

@@ -31,7 +31,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
   }, [isVisible, google, fb, fr]); //eslint-disable-line
 
   return (
-    <div>
+    <>
       <section className="about-section" ref={oneRef}>
         <motion.div
           className="video-page-mob d-block d-lg-none bg-white"
@@ -163,11 +163,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-      <section
-        className="about-section"
-        style={{ height: "50vh !important" }}
-        ref={fourRef}
-      >
+      <section className="about-section mb-5" ref={fourRef}>
         <motion.div
           className="video-page-mob d-block d-lg-none bg-white"
           key="aboutvideo5"
@@ -211,6 +207,6 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-    </div>
+    </>
   );
 }

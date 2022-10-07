@@ -53,10 +53,9 @@ const MainNavbar = () => {
 
   useEffect(() => {
     if (!shortNavActive && !transitionRunning && router.pathname !== "/") {
-      scrollY.onChange((latest) => {
+      scrollY.onChange(() => {
         dispatch(shortNav());
         setY(250);
-        console.log("Sasdasd");
       });
     }
   }, [scrollY, transitionRunning, shortNavActive, router.pathname, dispatch]);

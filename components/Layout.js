@@ -1,28 +1,31 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import MainNavbar from "./Navbar/MainNavbar";
 import NavHover from "./Navbar/NavHover";
 import RouteShow from "./RouteShow";
 import MobileNavIcon from "./Navbar/MobileNavIcon";
 import MobileNavbar from "./Navbar/MobileNavbar";
-
 const Layout = ({ children }) => {
   const cursor = useRef(null);
-
+  const { scrollY } = useScroll();
   const activeNav = useSelector((state) => state.navActive);
   const activeLogo = useSelector((state) => state.logoHovered);
   const shortNavActive = useSelector((state) => state.shortNav);
-  
+  const [scrolledToBgW, setScrolledToBgW] = useState(false);
   const editCursor = (e) => {
     const { clientX: x, clientY: y } = e;
     cursor.current.style.left = x + "px";
     cursor.current.style.top = y + "px";
   };
-
+  useEffect(() => {
+    scrollY.onChange((latest) => {
+      setScrolledToBgW(latest);
+    });
+  }, [scrollY]);
   return (
     <main onMouseMove={(e) => editCursor(e)}>
-      <RouteShow />
+      <RouteShow scrolled={scrolledToBgW} />
       <div
         id="mouse"
         className={
