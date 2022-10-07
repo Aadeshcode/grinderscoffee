@@ -3,6 +3,8 @@ import {
   HOVER_LOGO_HALT,
   HOVER_NAV,
   HOVER_NAV_HALT,
+  MOB_NAV_HIDE,
+  MOB_NAV_SHOW,
   SHORT_NAV,
   SHORT_NAV_HALT,
   TRANSITION,
@@ -48,5 +50,15 @@ export const runTransition = () => (dispatch) => {
 export const transitionHalt = () => (dispatch) => {
   dispatch({
     type: TRANSITION_HALT,
+  });
+};
+export const mobileNavOn = () => (dispatch) => {
+  dispatch({
+    type: MOB_NAV_SHOW,
+  });
+};
+export const mobileNavOff = () => (dispatch) => {
+  dispatch({
+    type: MOB_NAV_HIDE,
   });
 };

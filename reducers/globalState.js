@@ -3,6 +3,8 @@ import {
   HOVER_LOGO_HALT,
   HOVER_NAV,
   HOVER_NAV_HALT,
+  MOB_NAV_HIDE,
+  MOB_NAV_SHOW,
   SHORT_NAV,
   SHORT_NAV_HALT,
   TRANSITION,
@@ -44,6 +46,16 @@ export const TransitionRunningReducer = (state = false, action) => {
     case TRANSITION:
       return true;
     case TRANSITION_HALT:
+      return false;
+    default:
+      return state;
+  }
+};
+export const mobileNavReducer = (state = false, action) => {
+  switch (action.type) {
+    case MOB_NAV_SHOW:
+      return true;
+    case MOB_NAV_HIDE:
       return false;
     default:
       return state;

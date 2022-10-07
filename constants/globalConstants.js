@@ -8,3 +8,5 @@ export const SHORT_NAV = "SHORT_NAV";
 export const SHORT_NAV_HALT = "SHORT_NAV_HALT";
 export const TRANSITION = "TRANSITION";
 export const TRANSITION_HALT = "TRANSITION_HALT";
+export const MOB_NAV_SHOW = "MOV_NAV";
+export const MOB_NAV_HIDE = "MOV_NAV_HIDE";

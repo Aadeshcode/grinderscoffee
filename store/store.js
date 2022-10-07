@@ -3,6 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import {
   LogoHoverReducer,
+  mobileNavReducer,
   NavHoverReducer,
   ShortNavReducer,
   TransitionRunningReducer,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   logoHovered: LogoHoverReducer,
   shortNav: ShortNavReducer,
   transition: TransitionRunningReducer,
+  mobileNav: mobileNavReducer,
 });
 function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware];

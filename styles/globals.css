@@ -375,7 +375,7 @@ img {
   position: fixed;
   top: 4%;
   left: 3%;
-  z-index: 1000000000;
+  z-index: 100;
 }
 .page-nav-text-location {
   font-family: "bold";
@@ -390,4 +390,41 @@ img {
   top: 4%;
   right: 3%;
   z-index: 1000000000;
+}
+.mobile-nav-icon {
+  position: fixed;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+
+  z-index: 1000;
+}
+.navbar-mobile-content-wrapper {
+  height: 100vh;
+  width: 101vw;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 999;
+}
+@media screen and (max-width: 992px) {
+  .page-left {
+    display: none;
+  }
+  .page-right {
+    position: static;
+    width: 100vw;
+    margin: 0;
+  }
+  .page-section {
+    padding: 0;
+    height: auto !important;
+  }
+  .about-section {
+    height: auto;
+  }
+  .video-page-mob {
+    height: 60vh !important;
+  }
 }

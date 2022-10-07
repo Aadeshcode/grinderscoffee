@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { shortNav } from "../action/globalAction";
 import { useElementOnScreen } from "../utils/customHooks";
-
+import { motion } from "framer-motion";
 export default function AboutPageParallax({ setSelected, selected, clicked }) {
   const oneRef = useRef();
   const twoRef = useRef();
@@ -32,10 +32,33 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
 
   return (
     <div>
-      <section className="about-section">
-        <div ref={oneRef}>
+      <section className="about-section" ref={oneRef}>
+        <motion.div
+          className="video-page-mob d-block d-lg-none bg-white"
+          key="aboutvideo1 "
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <video
+            autoPlay="autoplay"
+            loop
+            muted
+            playsInline
+            poster="https://noccoffeeco.com/media/2019/03/Home_portrait.jpg"
+            className="nav-hover__img-item page-left__media"
+            data-id="0"
+          >
+            <source
+              src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </motion.div>
+        <div className="p-3 px-lg-0 py-5 py-lg-0">
           <h1 className="display-6">Rooted in curation</h1>
-          <p className="py-5">Coffee is our soul.</p>
+          <p className="py-lg-5 py-3">Coffee is our soul.</p>
           <p className="text-secondary">
             Focusing on the minute; being meticulous over every detail.
             Everything we do is considered to give an unparalleled experience of
@@ -43,8 +66,31 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </p>
         </div>
       </section>
-      <section className="about-section">
-        <div ref={twoRef}>
+      <section className="about-section" ref={twoRef}>
+        <motion.div
+          className="video-page-mob d-block d-lg-none bg-white"
+          key="aboutvideo2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <video
+            autoPlay="autoplay"
+            loop
+            muted
+            playsInline
+            poster="https://noccoffeeco.com/media/2019/03/about_latte_new.jpg"
+            className="page-left__media this-active"
+            data-id="1"
+          >
+            <source
+              src="https://noccoffeeco.com/media/2019/03/about_latte.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </motion.div>
+        <div className="p-3 px-lg-0 py-5 py-lg-0">
           <h1 className="display-6">Coffee</h1>
           <p className="py-5">
             We believe coffee should be as simple or complex as you want it to
@@ -69,8 +115,31 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-      <section className="about-section">
-        <div ref={threeRef}>
+      <section className="about-section" ref={threeRef}>
+        <motion.div
+          className="video-page-mob d-block d-lg-none bg-white"
+          key="aboutvideo3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <video
+            autoPlay="autoplay"
+            loop
+            muted
+            playsInline
+            poster="https://noccoffeeco.com/media/2021/05/Food_2.jpg"
+            className="page-left__media this-active"
+            data-id="2"
+          >
+            <source
+              src="https://noccoffeeco.com/media/2021/05/Food.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </motion.div>
+        <div className="p-3 px-lg-0 py-5 py-lg-0">
           <h1 className="display-6">Food</h1>
           <p className="py-5">
             Our healthy and nutritious food menu changes regularly to use the
@@ -94,8 +163,35 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
           </nav>
         </div>
       </section>
-      <section className="about-section" style={{ height: "50vh !important" }}>
-        <div ref={fourRef}>
+      <section
+        className="about-section"
+        style={{ height: "50vh !important" }}
+        ref={fourRef}
+      >
+        <motion.div
+          className="video-page-mob d-block d-lg-none bg-white"
+          key="aboutvideo5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <video
+            autoPlay="autoplay"
+            loop
+            muted
+            playsInline
+            poster="https://noccoffeeco.com/media/2019/03/about_food-1.jpg"
+            className="page-left__media this-active"
+            data-id="3"
+          >
+            <source
+              src="https://noccoffeeco.com/media/2019/02/about_space.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </motion.div>
+        <div className="p-3 px-lg-0 py-5 py-lg-0">
           <h1 className="display-6">Space</h1>
           <p className="py-5 text-secondary">
             We don’t choose obvious locations; we choose interesting spaces in

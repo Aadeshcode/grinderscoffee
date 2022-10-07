@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AboutPageParallax from "../components/AboutPageParallax";
+import SectionShow from "../components/Navbar/SectionShow";
 
 const About = () => {
   const [x, setX] = useState(0);
@@ -79,48 +80,7 @@ const About = () => {
           }}
           style={{ left: "30px" }}
         ></motion.div>
-        {/* section nav start */}
-        <motion.div
-          key="one-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: selected === 1 ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          className="section-nav"
-          transition={{ duration: 1 }}
-        >
-          CURATION
-        </motion.div>
-        <motion.div
-          key="one-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: selected === 2 ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          className="section-nav"
-          transition={{ duration: 1 }}
-        >
-          COFFEE
-        </motion.div>
-        <motion.div
-          key="one-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: selected === 3 ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          className="section-nav"
-          transition={{ duration: 1 }}
-        >
-          FOOD
-        </motion.div>
-        <motion.div
-          key="one-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: selected === 4 ? 1 : 0 }}
-          exit={{ opacity: 0 }}
-          className="section-nav"
-          transition={{ duration: 1 }}
-        >
-          SPACE
-        </motion.div>
-        {/* section nav end */}
+        <SectionShow selected={selected} />
         <div className="page-nav__no-wrapper">
           <button
             className="page-nav__no js-btn this-active"
@@ -185,7 +145,7 @@ const About = () => {
         </div>
       </motion.div>{" "}
       <motion.div
-        className="page-left bg-white"
+        className="page-left d-none d-lg-block bg-white"
         key="aboutvideo1 "
         initial={{ opacity: 0 }}
         animate={{ opacity: selected === 1 ? 1 : 0 }}
@@ -285,13 +245,11 @@ const About = () => {
           data-headertitle="Curation - NOC COFFEE CO."
           style={{ _maxHeight: "50vh !important" }}
         >
-          <div>
-            <AboutPageParallax
-              setSelected={setSelected}
-              selected={selected}
-              clicked={clicked}
-            />
-          </div>
+          <AboutPageParallax
+            setSelected={setSelected}
+            selected={selected}
+            clicked={clicked}
+          />
         </section>
       </div>
     </>

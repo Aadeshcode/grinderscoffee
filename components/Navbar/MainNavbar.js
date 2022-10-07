@@ -59,9 +59,9 @@ const MainNavbar = () => {
         console.log("Sasdasd");
       });
     }
-  }, [scrollY, transitionRunning, shortNavActive, router.pathname]); //eslint-disable-line
+  }, [scrollY, transitionRunning, shortNavActive, router.pathname, dispatch]);
   return (
-    <div className="navbar-content-wrapper py-5 ">
+    <div className="navbar-content-wrapper py-5 d-none d-lg-block ">
       <motion.div
         animate={{ x, y }}
         transition={{ duration: 1.5, type: "spring" }}

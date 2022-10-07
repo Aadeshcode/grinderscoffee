@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import MainNavbar from "./Navbar/MainNavbar";
 import NavHover from "./Navbar/NavHover";
 import RouteShow from "./RouteShow";
+import MobileNavIcon from "./Navbar/MobileNavIcon";
+import MobileNavbar from "./Navbar/MobileNavbar";
 
 const Layout = ({ children }) => {
   const cursor = useRef(null);
@@ -11,6 +13,7 @@ const Layout = ({ children }) => {
   const activeNav = useSelector((state) => state.navActive);
   const activeLogo = useSelector((state) => state.logoHovered);
   const shortNavActive = useSelector((state) => state.shortNav);
+  
   const editCursor = (e) => {
     const { clientX: x, clientY: y } = e;
     cursor.current.style.left = x + "px";
@@ -24,8 +27,8 @@ const Layout = ({ children }) => {
         id="mouse"
         className={
           shortNavActive && activeLogo
-            ? "mouse blend-mode-normal"
-            : "mouse blend-mode-exclusion"
+            ? "mouse blend-mode-normal d-none d-lg-block"
+            : "mouse blend-mode-exclusion d-none d-lg-block"
         }
         ref={cursor}
         style={
@@ -59,6 +62,8 @@ const Layout = ({ children }) => {
         ></div>
       </div>
       <MainNavbar />
+      <MobileNavIcon />
+      <MobileNavbar />
       <NavHover active={activeNav} />
       <main className="main-body">{children}</main>
     </main>
