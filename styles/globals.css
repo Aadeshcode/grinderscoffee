@@ -224,6 +224,7 @@ img {
   top: 0;
   left: 0;
   width: 42vw;
+  overflow-x: hidden;
 }
 .page-right {
   min-height: 100vh;
@@ -234,6 +235,7 @@ img {
   margin-left: 58vw;
   height: auto;
   z-index: 2;
+  overflow-x: hidden;
 }
 .page-section {
   padding: 28vh 30px 18vh;

@@ -62,8 +62,8 @@ const MainNavbar = () => {
   return (
     <div className="navbar-content-wrapper py-5 d-none d-lg-block ">
       <motion.div
-        animate={{ x, y }}
-        transition={{ duration: 1.5, type: "spring" }}
+        animate={shortNavActive ? { y: 250, x: 0 } : { x: 0, y: 0 }}
+        transition={{ duration: 1.5, type: "tween", ease: "backOut" }}
         className="flex-center logo-main "
         style={{ zIndex: "1000000000000" }}
       >

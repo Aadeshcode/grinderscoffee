@@ -21,7 +21,7 @@ const MobileNavbar = () => {
           animate={{ opacity: mobileNavActive ? 1 : 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1, type: "spring" }}
-          className="navbar-mobile-content-wrapper bg-white flex-center"
+          className="navbar-mobile-content-wrapper d-block d-md-none bg-white flex-center"
         >
           <ul className="mt-5">
             <Link href="/about">
@@ -30,7 +30,9 @@ const MobileNavbar = () => {
               </li>
             </Link>
             <Link href="/roastery">
-              <li className="text-center py-2" onClick={clickEvent}>ROASTERY</li>
+              <li className="text-center py-2" onClick={clickEvent}>
+                ROASTERY
+              </li>
             </Link>
             <Link href="/location">
               <li className="text-center py-2">LOCATIONS</li>
