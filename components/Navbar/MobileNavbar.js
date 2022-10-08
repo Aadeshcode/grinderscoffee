@@ -21,7 +21,7 @@ const MobileNavbar = () => {
           animate={{ opacity: mobileNavActive ? 1 : 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1, type: "spring" }}
-          className="navbar-mobile-content-wrapper d-block d-md-none bg-white flex-center"
+          className="navbar-mobile-content-wrapper  d-lg-none bg-white flex-center"
         >
           <ul className="mt-5">
             <Link href="/about">
