@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "../styles/bootstrap.min.css";
 import "../styles/globals.css";
 import Layout from "../components/Layout";
@@ -7,7 +8,8 @@ import store from "../store/store";
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 import { ChakraProvider } from "@chakra-ui/react";
-function MyApp({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const queryClient = React.useRef(
     new QueryClient({
       defaultOptions: {
@@ -18,19 +20,22 @@ function MyApp({ Component, pageProps }) {
     })
   );
   return (
-    <QueryClientProvider client={queryClient.current}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Provider store={store}>
-          <ChakraProvider>
-            <AnimatePresence>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </AnimatePresence>
-          </ChakraProvider>
-        </Provider>
-      </Hydrate>
-    </QueryClientProvider>
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient.current}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Provider store={store}>
+            <ChakraProvider>
+              <AnimatePresence>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </AnimatePresence>
+            </ChakraProvider>
+          </Provider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Hydrate>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }
 

@@ -3,6 +3,8 @@ import Image from "next/image";
 import { IoLogoInstagram } from "react-icons/io";
 import { ImFacebook } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import {
   hoverLogo,
   hoverLogoHalt,
@@ -17,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { motion, useScroll } from "framer-motion";
 const MainNavbar = () => {
+  const { status } = useSession();
   const shortNavActive = useSelector((state) => state.shortNav);
   const transitionRunning = useSelector((state) => state.transition);
   const dispatch = useDispatch();
@@ -133,13 +136,36 @@ const MainNavbar = () => {
           >
             CONTACTS
           </li>
-          <li
-            className="text-center py-2"
-            onMouseEnter={() => dispatch(hoverNav("MENU"))}
-            onMouseLeave={() => dispatch(hoverNavHalt(""))}
-          >
-            MENU
-          </li>
+          <Link href="/menu">
+            <li
+              className="text-center py-2"
+              onMouseEnter={() => dispatch(hoverNav("MENU"))}
+              onMouseLeave={() => dispatch(hoverNavHalt(""))}
+            >
+              MENU
+            </li>
+          </Link>
+          {status === "authenticated" ? (
+            <Link href="/dashboard">
+              <li
+                className="text-center py-2"
+                onMouseEnter={() => dispatch(hoverNav("DASHBOARD"))}
+                onMouseLeave={() => dispatch(hoverNavHalt(""))}
+                onClick={clickNav}
+              >
+                DASHBOARD
+              </li>
+            </Link>
+          ) : (
+            <li
+              className="text-center py-2"
+              onMouseEnter={() => dispatch(hoverNav("MENU"))}
+              onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              onClick={signIn}
+            >
+              LOGIN
+            </li>
+          )}{" "}
         </ul>
       </motion.nav>
       <div
