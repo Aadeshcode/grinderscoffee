@@ -5,8 +5,11 @@ import {
   LogoHoverReducer,
   mobileNavReducer,
   NavHoverReducer,
+  resetEditorReducer,
+  shareModalReducer,
   ShortNavReducer,
   TransitionRunningReducer,
+  updateEditorReducer,
 } from "../reducers/globalState";
 
 const reducer = combineReducers({
@@ -15,6 +18,9 @@ const reducer = combineReducers({
   shortNav: ShortNavReducer,
   transition: TransitionRunningReducer,
   mobileNav: mobileNavReducer,
+  resetEditor: resetEditorReducer,
+  updateEditor: updateEditorReducer,
+  shareModal: shareModalReducer,
 });
 function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware];

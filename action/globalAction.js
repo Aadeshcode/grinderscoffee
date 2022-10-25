@@ -1,4 +1,5 @@
 import {
+  HIDE_SHARE_MODAL,
   HOVER_LOGO,
   HOVER_LOGO_HALT,
   HOVER_NAV,
@@ -7,6 +8,7 @@ import {
   MOB_NAV_SHOW,
   SHORT_NAV,
   SHORT_NAV_HALT,
+  SHOW_SHARE_MODAL,
   TRANSITION,
   TRANSITION_HALT,
 } from "../constants/globalConstants";
@@ -60,5 +62,17 @@ export const mobileNavOn = () => (dispatch) => {
 export const mobileNavOff = () => (dispatch) => {
   dispatch({
     type: MOB_NAV_HIDE,
+  });
+};
+
+export const shareModalOpen = (data) => (dispatch) => {
+  dispatch({
+    type: SHOW_SHARE_MODAL,
+    payload: data,
+  });
+};
+export const shareModalClose = () => (dispatch) => {
+  dispatch({
+    type: HIDE_SHARE_MODAL,
   });
 };

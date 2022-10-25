@@ -36,7 +36,9 @@ const MainNavbar = () => {
       setTimeout(() => {
         dispatch(transitionHalt());
       }, 3000);
+      return;
     }
+    router.push("/");
   };
 
   useEffect(() => {
@@ -70,17 +72,15 @@ const MainNavbar = () => {
         className="flex-center logo-main "
         style={{ zIndex: "1000000000000" }}
       >
-        <Link href={shortNavActive ? router.pathname : "/"} scroll={false}>
-          <Image
-            src={"/pics/logo.png"}
-            width="100"
-            height={100}
-            alt="logo"
-            onMouseEnter={() => dispatch(hoverLogo())}
-            onMouseLeave={() => dispatch(hoverLogoHalt())}
-            onClick={clickLogo}
-          />
-        </Link>
+        <Image
+          src={"/pics/logo.png"}
+          width="100"
+          height={100}
+          alt="logo"
+          onMouseEnter={() => dispatch(hoverLogo())}
+          onMouseLeave={() => dispatch(hoverLogoHalt())}
+          onClick={clickLogo}
+        />
       </motion.div>
 
       <motion.nav

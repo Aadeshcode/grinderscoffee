@@ -1,14 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { motion, useScroll } from "framer-motion";
+import { useScroll } from "framer-motion";
 import MainNavbar from "./Navbar/MainNavbar";
 import NavHover from "./Navbar/NavHover";
 import RouteShow from "./RouteShow";
 import MobileNavIcon from "./Navbar/MobileNavIcon";
 import MobileNavbar from "./Navbar/MobileNavbar";
+import { useRouter } from "next/router";
+import ShareModal from "./ShareModal";
 const Layout = ({ children }) => {
   const cursor = useRef(null);
   const { scrollY } = useScroll();
+  const router = useRouter();
+  const pathname = router.pathname;
   const activeNav = useSelector((state) => state.navActive);
   const activeLogo = useSelector((state) => state.logoHovered);
   const shortNavActive = useSelector((state) => state.shortNav);
@@ -48,7 +52,7 @@ const Layout = ({ children }) => {
         <div
           className="mouse__pointer"
           style={
-            shortNavActive && activeLogo
+            (shortNavActive && activeLogo) || pathname === "/admin/blogs"
               ? {
                   display: "none",
                 }
@@ -68,6 +72,7 @@ const Layout = ({ children }) => {
       <MobileNavIcon />
       <MobileNavbar />
       <NavHover active={activeNav} />
+      <ShareModal />
       <main className="main-body">{children}</main>
     </main>
   );

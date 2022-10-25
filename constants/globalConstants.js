@@ -10,3 +10,7 @@ export const TRANSITION = "TRANSITION";
 export const TRANSITION_HALT = "TRANSITION_HALT";
 export const MOB_NAV_SHOW = "MOV_NAV";
 export const MOB_NAV_HIDE = "MOV_NAV_HIDE";
+export const RESET_EDITOR = "RESET_EDITOR";
+export const UPDATE_EDITOR = "UPDATE_EDITOR";
+export const SHOW_SHARE_MODAL = "SHOW_SHARE_MODAL";
+export const HIDE_SHARE_MODAL = "HIDE_SHARE_MODAL";

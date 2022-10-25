@@ -16,7 +16,7 @@ const DashBoard = () => {
           </div>
           <div>
             <h1 className="display-3">Actions</h1>
-            <Grid setSelectedAction={setSelectedAction} />
+            <Grid setSelectedAction={setSelectedAction}/>
           </div>
         </div>
         <div className="page-right">

@@ -1,11 +1,16 @@
 import React, { useRef, useLayoutEffect, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import styled from "styled-components";
-
+import Link from "next/link";
 const images = [
   "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
 ];
-function Grid({ delayPerPixel = 0.0008, numItems = 1, setSelectedAction }) {
+function Grid({
+  delayPerPixel = 0.0008,
+  numItems = 1,
+  setSelectedAction,
+  blogSlug,
+}) {
   const originOffset = useRef({ top: 0, left: 0 });
   const controls = useAnimation();
 
@@ -80,22 +85,24 @@ function GridItem({
       >
         <h1 className="display-3 text-white p-5">Menu</h1>
       </Box>
-      <Box
-        ref={ref}
-        variants={itemVariants}
-        custom={delayRef}
-        style={{
-          backgroundImage: "url(/pics/packet.jpg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          display: "flex",
-          alignItems: "center",
-        }}
-        onClick={() => setSelectedAction("blog")}
-      >
-        <h1 className="display-3 text-white p-5">Blog</h1>
-      </Box>
+      <Link href={`/admin/blogs`}>
+        <Box
+          ref={ref}
+          variants={itemVariants}
+          custom={delayRef}
+          style={{
+            backgroundImage: "url(/pics/packet.jpg)",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            display: "flex",
+            alignItems: "center",
+          }}
+          onClick={() => setSelectedAction("blog")}
+        >
+          <h1 className="display-3 text-white p-5">Blog</h1>
+        </Box>
+      </Link>
     </>
   );
 }

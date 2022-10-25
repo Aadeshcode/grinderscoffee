@@ -55,6 +55,7 @@ a {
 }
 h1 {
   color: #6c6d6e !important;
+  font-size: 2rem;
 }
 p {
   font-family: "regular";
@@ -161,9 +162,14 @@ p {
 * {
   font-family: "regular";
 }
-button {
-  cursor: none !important;
+.font-bold {
+  font-family: medium;
+  font-weight: bold;
 }
+.font-caps {
+  font-family: caps;
+}
+
 .chakra-text {
   font-family: regular !important;
 }
@@ -271,6 +277,11 @@ img {
   left: 0;
   width: 42vw;
   overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.page-left::-webkit-scrollbar {
+  display: none;
 }
 .page-right {
   min-height: 100vh;
@@ -631,6 +642,37 @@ input[type="radio"]:checked::before {
 }
 .menu-wrapper:hover {
   background-color: var(--gray-200);
+}
+.rich-text {
+  height: 50%;
+}
+div[role="textbox"] {
+  min-height: 300px !important;
+}
+.rich-text button {
+  cursor: pointer !important;
+}
+ol[data-slate-node="element"] {
+  padding-left: 1.5rem;
+}
+ol[data-slate-node="element"] li {
+  list-style: circle;
+  list-style-type: disc;
+}
+.modal {
+  z-index: 10000000;
+}
+.modal-backdrop {
+  z-index: 999988;
+}
+svg {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 1.5rem;
+  width: 1.2rem !important;
+  opacity: 0.8;
+  margin: 0 5px 0 5px;
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 992px) {

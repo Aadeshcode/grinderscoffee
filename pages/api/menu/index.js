@@ -41,7 +41,9 @@ const createMenu = async (req, res) => {
 
 const getMenu = async (req, res) => {
   try {
-    const allMenu = await Menu.find();
+    const allMenu = await Menu.find().sort({
+      createdAt: -1,
+    });
     if (allMenu.length) {
       res.status(200).json(allMenu);
     } else {
