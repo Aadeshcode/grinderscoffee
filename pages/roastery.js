@@ -15,10 +15,10 @@ const Roastery = () => {
       setX(0);
     }
     if (selected === 2) {
-      setX(43);
+      setX(44);
     }
     if (selected === 3) {
-      setX(85);
+      setX(88);
     }
     if (selected === 4) {
       setX(128);
@@ -44,10 +44,10 @@ const Roastery = () => {
           setX(0);
           break;
         case 2:
-          setX(43);
+          setX(44);
           break;
         case 3:
-          setX(85);
+          setX(88);
           break;
         case 4:
           setX(128);
@@ -127,7 +127,7 @@ const Roastery = () => {
           <button
             className="page-nav__no js-btn"
             // style="opacity: 1;"
-            onMouseEnter={() => mouseEnter(43)}
+            onMouseEnter={() => mouseEnter(44)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(2, 600, 43)}
           >
@@ -135,7 +135,7 @@ const Roastery = () => {
           </button>
           <button
             className="page-nav__no js-btn"
-            onMouseEnter={() => mouseEnter(85)}
+            onMouseEnter={() => mouseEnter(88)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(3, 1200, 85)}
           >

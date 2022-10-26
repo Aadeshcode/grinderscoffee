@@ -77,7 +77,7 @@ const RichText = ({ value, setValue, showImage, placeHolder }) => {
   }, [resetEd]);
 
   editor.children = value;
-  console.log(value);
+
   return (
     <div className="rich-text">
       <div className="p-1 m-2 border rounded">

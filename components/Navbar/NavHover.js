@@ -115,13 +115,10 @@ const NavHover = ({ active }) => {
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "231.031px", fontFamily: "regular" }}
-        >
-          Where coffee meets design{" "}
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3" data-id="0">
+          Where coffee <br />
+          meets design{" "}
+        </h1>
       </div>
       <div
         className="nav-hover-text"
@@ -131,13 +128,9 @@ const NavHover = ({ active }) => {
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "300.031px", fontFamily: "regular" }}
-        >
-          Unusual Spaces Brought To Life
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3">
+          Unusual Spaces <br /> Brought To Life
+        </h1>
       </div>
       <div
         className="nav-hover-text"
@@ -147,29 +140,23 @@ const NavHover = ({ active }) => {
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "336.031px", fontFamily: "regular" }}
-        >
-          Unparalled Event and Workshop Experiences
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3">
+          Articles From <br /> Grinders Cafe
+        </h1>
       </div>
       <div
-        className="nav-hover-text"
+        className="nav-hover-text "
         style={
           active === "ROASTERY"
             ? { backgroundColor: "white", opacity: 1 }
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "266.031px", fontFamily: "regular" }}
-        >
-          Carefully Selected Beans in Roastery House
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3  " data-id="0">
+          Carefully Selected
+          <br /> Beans in <br />
+          Roastery House
+        </h1>
       </div>
       <div
         className="nav-hover-text"
@@ -179,13 +166,9 @@ const NavHover = ({ active }) => {
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "370.031px", fontFamily: "regular" }}
-        >
-          A Real Person Will Answer
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3 " data-id="0">
+          A Real Person <br /> Will Answer
+        </h1>
       </div>
       <div
         className="nav-hover-text"
@@ -195,13 +178,9 @@ const NavHover = ({ active }) => {
             : { opacity: 0 }
         }
       >
-        <p
-          className="nav-hover-text-item"
-          data-id="0"
-          style={{ top: "410.031px", fontFamily: "regular" }}
-        >
-          Best Coffee Items In Chitwan
-        </p>
+        <h1 className="nav-hover-text-item font-caps display-3 " data-id="0">
+          Best Coffee Items <br /> In Chitwan
+        </h1>
       </div>
     </motion.div>
   );

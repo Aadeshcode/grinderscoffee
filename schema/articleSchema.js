@@ -6,7 +6,11 @@ const blogSchema = mongoose.Schema(
     category: { type: String },
     article: { type: Array, required: true },
     slug: { type: String, required: true },
-    thumbnail: { type: String },
+    thumbnail: {
+      type: String,
+      default:
+        "https://noccoffeeco.com/media/2021/10/211018_NOC-Whompoa14413-11.jpg",
+    },
   },
   {
     timestamps: true,

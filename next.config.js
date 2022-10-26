@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       "lh3.googleusercontent.com",
       "canotes.s3.ap-south-1.amazonaws.com",
+      "noccoffeeco.com",
     ],
   },
   swcMinify: true,

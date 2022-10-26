@@ -39,6 +39,26 @@ const RouteShow = ({ scrolled }) => {
       >
         LOCATION
       </motion.div>
+      <motion.div
+        key="location-menu"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: router.pathname === "/menu" ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        className="page-nav-text-location"
+        transition={{ duration: 1 }}
+      >
+        MENU
+      </motion.div>
+      <motion.div
+        key="location-blog"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: router.pathname === "/blogs" ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        className="page-nav-text-location"
+        transition={{ duration: 1 }}
+      >
+        BLOGS
+      </motion.div>
     </div>
   );
 };

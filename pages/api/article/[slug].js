@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import Article from "../../../schema/articleSchema";
 import connectDB from "../../../utils/connectDB";
 
@@ -37,7 +38,7 @@ const getArticle = async (req, res) => {
               },
             },
             {
-              $limit: 2,
+              $limit: 4,
             },
             {
               $project: {
@@ -67,41 +68,22 @@ const getArticle = async (req, res) => {
 };
 const editArticle = async (req, res) => {
   try {
-    const { name } = await protect(req, res);
-    if (name) {
-      const { slug } = req.query;
-      const getArticle = await Article.findOne({ slug: slug });
-      const {
-        article,
-        topic,
-        category,
-        tags,
-        showData,
-        subCategory,
-        thumbnail,
-      } = req.body;
-      console.log(subCategory);
-      const slugToBeAdded =
-        getArticle.title === topic
-          ? getArticle.slug
-          : slugify(topic) + "-" + new Date().valueOf().toString().slice(7);
-      getArticle.article = article;
-      getArticle.title = topic;
-      getArticle.thumbnail = thumbnail;
-      getArticle.category = category;
-      getArticle.subCategory = subCategory;
-      getArticle.tags = tags;
-      getArticle.showData = showData;
-      getArticle.slug = slugToBeAdded;
+    const { slug } = req.query;
+    const getArticle = await Article.findOne({ slug: slug });
+    const { article, topic } = req.body;
+    const slugToBeAdded =
+      getArticle.title === topic
+        ? getArticle.slug
+        : slugify(topic) + "-" + new Date().valueOf().toString().slice(7);
+    getArticle.article = article;
+    getArticle.topic = topic;
+    getArticle.slug = slugToBeAdded;
 
-      const editedArticle = await getArticle.save();
-      res.status(200).json({
-        status: "Article Successfully Edited",
-        slug: editedArticle.slug,
-      });
-    } else {
-      res.status(401).json({ message: "User Not Logged In" });
-    }
+    const editedArticle = await getArticle.save();
+    res.status(200).json({
+      status: "Article Successfully Edited",
+      slug: editedArticle.slug,
+    });
   } catch (error) {
     res.status(400).json({
       error: error.message,
@@ -110,17 +92,10 @@ const editArticle = async (req, res) => {
 };
 const deleteArticle = async (req, res) => {
   try {
-    const { email } = await protect(req, res);
-    if (!email) {
-      throw new Error("Not Authorised");
-    }
     const { slug } = req.query;
     const getArticle = await Article.findOne({ slug });
     if (!getArticle) {
       throw new Error("Article Not Found");
-    }
-    if (email !== email) {
-      throw new Error("Not Authorised");
     }
 
     await getArticle.remove();

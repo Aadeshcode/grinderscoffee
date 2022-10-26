@@ -17,11 +17,15 @@ const MobileNavbar = () => {
       <div className=" ">
         <motion.nav
           key="aboutvideo2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: mobileNavActive ? 1 : 0 }}
+          initial={{ opacity: 0, visibility: 0 }}
+          animate={{
+            opacity: mobileNavActive ? 1 : 0,
+            visibility: mobileNavActive ? 1 : 0,
+          }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1, type: "spring" }}
           className="navbar-mobile-content-wrapper  d-lg-none bg-white flex-center"
+          style={mobileNavActive ? { visibility: 1 } : { visibility: 0 }}
         >
           <ul className="mt-5">
             <Link href="/about">

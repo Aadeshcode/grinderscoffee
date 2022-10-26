@@ -17,13 +17,13 @@ const About = () => {
       setX(0);
     }
     if (selected === 2) {
-      setX(43);
+      setX(44);
     }
     if (selected === 3) {
-      setX(85);
+      setX(88);
     }
     if (selected === 4) {
-      setX(128);
+      setX(132);
     }
   };
   const clickEvent = (selected, data, scroll) => {
@@ -46,13 +46,13 @@ const About = () => {
           setX(0);
           break;
         case 2:
-          setX(43);
+          setX(44);
           break;
         case 3:
-          setX(85);
+          setX(88);
           break;
         case 4:
-          setX(128);
+          setX(132);
           break;
         default:
           break;
@@ -106,7 +106,7 @@ const About = () => {
             data-href="https://noccoffeeco.com/en/about-us/coffee/"
             data-headertitle="Coffee - NOC COFFEE CO."
             // style="opacity: 1;"
-            onMouseEnter={() => mouseEnter(43)}
+            onMouseEnter={() => mouseEnter(44)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(2, 600, 43)}
           >
@@ -117,7 +117,7 @@ const About = () => {
             data-id="2"
             data-href="https://noccoffeeco.com/en/about-us/food/"
             data-headertitle="Food - NOC COFFEE CO."
-            onMouseEnter={() => mouseEnter(85)}
+            onMouseEnter={() => mouseEnter(88)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(3, 1200, 85)}
           >
@@ -128,7 +128,7 @@ const About = () => {
             data-id="3"
             data-href="https://noccoffeeco.com/en/about-us/space/"
             data-headertitle="Sai Ying Pun, Sheung Wan, Wanchai and Central - NOC COFFEE CO."
-            onMouseEnter={() => mouseEnter(128)}
+            onMouseEnter={() => mouseEnter(132)}
             onMouseLeave={mouseLeave}
             onClick={() => clickEvent(4, 1800, 128)}
           >

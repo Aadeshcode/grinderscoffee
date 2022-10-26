@@ -1,18 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import RichText from "../../components/RichText";
 import * as Yup from "yup";
 import { Field, Form, Formik } from "formik";
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
-
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { resetEditor } from "../../action/editorAction";
 const Blog = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const formikRef = useRef(null);
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const slug = router.query.slug;
+  const isEdit = Boolean(router.query.isEdit);
   const [input, setInput] = useState([
     {
       type: "paragraph",
@@ -33,6 +37,18 @@ const Blog = () => {
   const { data, isLoading, isError, error } = useQuery(`getArticles`, () =>
     axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/article`)
   );
+  const { data: articleData } = useQuery(
+    `${slug}`,
+    () => axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/article/${slug}`),
+
+    {
+      onSuccess: (data) => {
+        if (data?.data?.article) setInput(data?.data?.article);
+      },
+      onError: () => {},
+      enabled: slug ? true : false,
+    }
+  );
 
   const postMutation = useMutation(
     (formFields) =>
@@ -42,29 +58,103 @@ const Blog = () => {
         console.log(error.message);
       },
       onSuccess: (data, variables, context) => {
+        toast({
+          title: `Article Successfully Created`,
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
+
         formikRef.current?.resetForm();
         queryClient.invalidateQueries("getArticles");
         dispatch(resetEditor());
       },
     }
   );
-  const submitForm = async (values) => {
+  const editMutation = useMutation(
+    (formFields) =>
+      axios.patch(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/article/${slug}`,
+        formFields
+      ),
+    {
+      onError: (error) => {
+        console.log(error.message);
+      },
+      onSuccess: (data, variables, context) => {
+        toast({
+          title: `Article Successfully Edited`,
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
+        formikRef.current?.resetForm();
+        router.push("/admin/blogs");
+        queryClient.invalidateQueries(`getArticles`);
+        dispatch(resetEditor());
+      },
+    }
+  );
+  const deleteMutation = useMutation(
+    (query) =>
+      axios.delete(`${process.env.NEXT_PUBLIC_DOMAIN}/article/${query}`),
+    {
+      onError: (error) => {
+        console.log(error.message);
+      },
+      onSuccess: (data, variables, context) => {
+        toast({
+          title: `Article Successfully Deleted`,
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
+        formikRef.current?.resetForm();
+        queryClient.invalidateQueries("getArticles");
+        dispatch(resetEditor());
+      },
+    }
+  );
+  const submitForm = (values) => {
+    if (isEdit) {
+      editMutation.mutate(values);
+      return;
+    }
     postMutation.mutate(values);
   };
-  console.log(input);
+  const deleteHandler = (query) => {
+    deleteMutation.mutate(query);
+  };
+  const editHandler = (query) => {
+    router.push(`/admin/blogs?isEdit=true&slug=${query}`);
+  };
+
   return (
     <>
       <div
         className="page-left p-5"
         // style={{ height: "90vh" }}
       >
+        <h1 className="display-6 font-caps">
+          {isEdit ? "Edit Article" : "Create Article"}
+        </h1>
         <Formik
           enableReinitialize
           innerRef={formikRef}
-          initialValues={{
-            topic: "",
-            category: "",
-          }}
+          initialValues={
+            isEdit
+              ? {
+                  topic: articleData?.data?.topic,
+                  category: articleData?.data?.category,
+                }
+              : {
+                  topic: "",
+                  category: "",
+                }
+          }
           validationSchema={articleSchema}
           onSubmit={(values) => {
             values.article = input;
@@ -73,8 +163,13 @@ const Blog = () => {
         >
           {({ values, errors, touched }) => (
             <Form>
-              <label className="mt-3">Topic Title</label>
-              <Field type="text" id="topic" name="topic" />
+              <label className="mt-3 font-caps">Topic Title</label>
+              <Field
+                type="text"
+                id="topic"
+                name="topic"
+                placeHolder="Enter Blog Title"
+              />
               {errors.topic && touched.topic ? (
                 <small className="text-danger ml-2">{errors.topic}</small>
               ) : null}
@@ -90,7 +185,7 @@ const Blog = () => {
                 type="submit"
                 className="btn btn-primary mt-3 p-3"
               >
-                Create
+                {isEdit ? "Edit Article" : "Create Article"}
               </Button>
             </Form>
           )}
@@ -100,17 +195,34 @@ const Blog = () => {
         className="page-right p-5"
         // style={{ height: "90vh" }}
       >
-        <h1 className="display-6" style={{ textDecoration: "underline" }}>
+        <h1
+          className="display-6 font-caps"
+          style={{ textDecoration: "underline" }}
+        >
           Blogs so far
         </h1>
         {data?.data.map((blog) => (
-          <Link href={`/blogs/${blog.slug}`} key={blog._id} className="pointer">
-            <div>
-              <h2 className="py-3" style={{ fontSize: "1.5rem" }}>
-                {blog.topic}
-              </h2>
-            </div>
-          </Link>
+          <div key={blog._id}>
+            <Link href={`/blogs/${blog.slug}`} className="pointer">
+              <div>
+                <h2 className="py-3" style={{ fontSize: "1.5rem" }}>
+                  {blog.topic}
+                </h2>
+              </div>
+            </Link>
+            <button
+              className="btn btn-outline-warning mx-2"
+              onClick={() => editHandler(blog.slug)}
+            >
+              Edit
+            </button>
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => deleteHandler(blog.slug)}
+            >
+              Delete
+            </button>
+          </div>
         ))}
       </div>
     </>
