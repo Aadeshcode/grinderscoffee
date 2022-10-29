@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
       onMouseMove={(e) => editCursor(e)}
       style={loading ? { pointerEvents: "none" } : {}}
     >
-      {/* <RouteShow scrolled={scrolledToBgW} /> */}
+      {router.pathname !== "/menu" && <RouteShow scrolled={scrolledToBgW} />}
       <div
         id="mouse"
         className={

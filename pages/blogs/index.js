@@ -43,11 +43,11 @@ const BlogShow = () => {
           ))}
         </div>
       </div>
-      <div className="page-right">
-        <div className="p-5 container">
+      <div className="page-right mt-5 mt-md-0">
+        <div className="p-md-5  container">
           {data?.data?.map((blog) => (
             <div key={blog._id} className="row align-items-start my-5">
-              <div key={blog._id} className="col-2">
+              <div key={blog._id} className="col-4 col-md-2">
                 <Link href={`/blogs/${blog.slug}`}>
                   <a className="d-flex">
                     <div className="thumbnail-wrapper">

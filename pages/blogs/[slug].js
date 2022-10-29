@@ -94,7 +94,7 @@ const OneBlog = () => {
       <div className="page-right">
         <div className="d-lg-none">
           <div className="flex-center align-items-center mt-5">
-            <div className="p-5 ">
+            <div className="p-md-5 p-3 ">
               <h1 className="font-caps display-1 text-center">
                 {data?.data?.topic}
               </h1>
@@ -121,6 +121,7 @@ const OneBlog = () => {
             </div>
           </div>
         </div>
+        <Divider />
         <div className="py-5 rightpageslug">
           {data?.data?.article && <ReadOnly value={data?.data?.article} />}
         </div>

@@ -47,6 +47,11 @@ const MobileNavbar = () => {
                 MENU
               </li>
             </Link>
+            <Link href="/blogs">
+              <li className="text-center py-2 " onClick={clickEvent}>
+                BLOGS
+              </li>
+            </Link>
           </ul>
         </motion.nav>
         {/* <div className="social flex-center mt-5">
