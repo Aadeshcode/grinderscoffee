@@ -8,16 +8,18 @@ import {
   ListItem,
   ListIcon,
   Button,
-  useColorModeValue,
-  Flex,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { CheckIcon } from "@chakra-ui/icons";
+import { useDispatch } from "react-redux";
+import { loadingStart } from "../action/globalAction";
 const ProductList = ({ product, deleteMutation }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const deleteCard = (e) => {
     e.stopPropagation();
+    dispatch(loadingStart());
     deleteMutation.mutate(product.name);
   };
   return (

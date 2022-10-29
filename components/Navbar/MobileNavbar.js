@@ -1,7 +1,4 @@
 import React from "react";
-import { ImFacebook } from "react-icons/im";
-import { IoLogoInstagram } from "react-icons/io";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +22,7 @@ const MobileNavbar = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 1, type: "spring" }}
           className="navbar-mobile-content-wrapper  d-lg-none bg-white flex-center"
-          style={mobileNavActive ? { visibility: 1 } : { visibility: 0 }}
+          style={mobileNavActive ? {} : { pointerEvents: "none" }}
         >
           <ul className="mt-5">
             <Link href="/about">
@@ -39,11 +36,17 @@ const MobileNavbar = () => {
               </li>
             </Link>
             <Link href="/location">
-              <li className="text-center py-2">LOCATIONS</li>
+              <li className="text-center py-2" onClick={clickEvent}>
+                LOCATIONS
+              </li>
             </Link>
             <li className="text-center py-2">EVENTS</li>
             <li className="text-center py-2">CONTACTS</li>
-            <li className="text-center py-2">MENU</li>
+            <Link href="/menu">
+              <li className="text-center py-2 " onClick={clickEvent}>
+                MENU
+              </li>
+            </Link>
           </ul>
         </motion.nav>
         {/* <div className="social flex-center mt-5">

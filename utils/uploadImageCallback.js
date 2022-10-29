@@ -1,9 +1,9 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export const uploadImageCallback = async (file) => {
   const formData = new FormData();
   formData.append("image", file);
-
   try {
     const config = {
       headers: {

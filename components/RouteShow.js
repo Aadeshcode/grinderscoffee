@@ -39,7 +39,7 @@ const RouteShow = ({ scrolled }) => {
       >
         LOCATION
       </motion.div>
-      <motion.div
+      {/* <motion.div
         key="location-menu"
         initial={{ opacity: 0 }}
         animate={{ opacity: router.pathname === "/menu" ? 1 : 0 }}
@@ -48,7 +48,7 @@ const RouteShow = ({ scrolled }) => {
         transition={{ duration: 1 }}
       >
         MENU
-      </motion.div>
+      </motion.div> */}
       <motion.div
         key="location-blog"
         initial={{ opacity: 0 }}

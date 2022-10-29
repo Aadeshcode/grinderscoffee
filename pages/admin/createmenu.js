@@ -6,11 +6,16 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
 import ListMenu from "../../components/admincomponents/ListMenu";
+import { useToast } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { loadingEnd, loadingStart } from "../../action/globalAction";
 const CreateMenu = () => {
   const formikRef = useRef();
+  const dispatch = useDispatch();
   const router = useRouter();
   const isEdit = router.query.edit || false;
   const product = router.query.name;
+  const toast = useToast();
   const queryClient = useQueryClient();
   const menuSchema = Yup.object().shape({
     name: Yup.string()
@@ -25,7 +30,7 @@ const CreateMenu = () => {
       .required("Required"),
   });
   //get indicidual menu items
-  const { data, isLoading, isError, error } = useQuery(
+  const { data } = useQuery(
     `getMenuItem-${product}`,
     () => axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/menu/${product}`),
     { enabled: isEdit && product ? true : false }
@@ -35,12 +40,27 @@ const CreateMenu = () => {
     (values) => axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/menu`, values),
     {
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data) => {
         queryClient.invalidateQueries("getMenu");
-        console.log(data);
+        toast({
+          title: "Menu Item Successfully Created",
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
         formikRef.current.resetForm();
+      },
+      onSettled: () => {
+        dispatch(loadingEnd());
       },
     }
   );
@@ -49,18 +69,35 @@ const CreateMenu = () => {
       axios.patch(`${process.env.NEXT_PUBLIC_DOMAIN}/menu/${product}`, values),
     {
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data) => {
         queryClient.invalidateQueries("getMenu");
         queryClient.invalidateQueries(`getMenuItem-${product}`);
+        toast({
+          title: "Menu Successfully Edited",
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
         formikRef.current.resetForm();
         router.push("/admin/createmenu");
+      },
+      onSettled: (data) => {
+        dispatch(loadingEnd());
       },
     }
   );
 
   const submitForm = async (values) => {
+    dispatch(loadingStart());
     if (isEdit) {
       editMutation.mutate(values);
     }

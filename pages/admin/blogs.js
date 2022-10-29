@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { resetEditor } from "../../action/editorAction";
+import { loadingEnd, loadingStart } from "../../action/globalAction";
 const Blog = () => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -47,6 +48,9 @@ const Blog = () => {
       },
       onError: () => {},
       enabled: slug ? true : false,
+      onSettled: () => {
+        dispatch(loadingEnd());
+      },
     }
   );
 
@@ -55,7 +59,14 @@ const Blog = () => {
       axios.post(`${process.env.NEXT_PUBLIC_DOMAIN}/article`, formFields),
     {
       onError: (error) => {
-        console.log(error.message);
+        console.log(error?.response?.data?.error);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data, variables, context) => {
         toast({
@@ -70,6 +81,9 @@ const Blog = () => {
         queryClient.invalidateQueries("getArticles");
         dispatch(resetEditor());
       },
+      onSettled: () => {
+        dispatch(loadingEnd());
+      },
     }
   );
   const editMutation = useMutation(
@@ -80,7 +94,13 @@ const Blog = () => {
       ),
     {
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data, variables, context) => {
         toast({
@@ -90,10 +110,14 @@ const Blog = () => {
           duration: 5000,
           position: "top-right",
         });
+        dispatch(loadingEnd());
         formikRef.current?.resetForm();
         router.push("/admin/blogs");
         queryClient.invalidateQueries(`getArticles`);
         dispatch(resetEditor());
+      },
+      onSettled: () => {
+        dispatch(loadingEnd());
       },
     }
   );
@@ -102,7 +126,13 @@ const Blog = () => {
       axios.delete(`${process.env.NEXT_PUBLIC_DOMAIN}/article/${query}`),
     {
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data, variables, context) => {
         toast({
@@ -116,9 +146,13 @@ const Blog = () => {
         queryClient.invalidateQueries("getArticles");
         dispatch(resetEditor());
       },
+      onSettled: () => {
+        dispatch(loadingEnd());
+      },
     }
   );
   const submitForm = (values) => {
+    dispatch(loadingStart());
     if (isEdit) {
       editMutation.mutate(values);
       return;
@@ -127,17 +161,16 @@ const Blog = () => {
   };
   const deleteHandler = (query) => {
     deleteMutation.mutate(query);
+    dispatch(loadingStart());
   };
   const editHandler = (query) => {
+    dispatch(loadingStart());
     router.push(`/admin/blogs?isEdit=true&slug=${query}`);
   };
 
   return (
     <>
-      <div
-        className="page-left p-5"
-        // style={{ height: "90vh" }}
-      >
+      <div className="page-left p-5">
         <h1 className="display-6 font-caps">
           {isEdit ? "Edit Article" : "Create Article"}
         </h1>

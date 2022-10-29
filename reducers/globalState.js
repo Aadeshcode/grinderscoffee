@@ -4,6 +4,8 @@ import {
   HOVER_LOGO_HALT,
   HOVER_NAV,
   HOVER_NAV_HALT,
+  LOADING,
+  LOADING_HALT,
   MOB_NAV_HIDE,
   MOB_NAV_SHOW,
   RESET_EDITOR,
@@ -91,6 +93,16 @@ export const shareModalReducer = (
       return { show: true, data: action.payload };
     case HIDE_SHARE_MODAL:
       return { show: false, data: "" };
+    default:
+      return state;
+  }
+};
+export const loadingReducer = (state = false, action) => {
+  switch (action.type) {
+    case LOADING:
+      return true;
+    case LOADING_HALT:
+      return false;
     default:
       return state;
   }

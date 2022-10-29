@@ -98,6 +98,7 @@ const MainNavbar = () => {
               onMouseEnter={() => dispatch(hoverNav("ABOUT"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
               onClick={() => clickNav()}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               ABOUT
             </li>
@@ -108,6 +109,7 @@ const MainNavbar = () => {
               onMouseEnter={() => dispatch(hoverNav("ROASTERY"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
               onClick={() => clickNav()}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               ROASTERY
             </li>
@@ -118,6 +120,7 @@ const MainNavbar = () => {
               onMouseEnter={() => dispatch(hoverNav("LOCATIONS"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
               onClick={() => clickNav()}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               LOCATIONS
             </li>
@@ -127,6 +130,7 @@ const MainNavbar = () => {
               className="text-center py-2 "
               onMouseEnter={() => dispatch(hoverNav("EVENTS"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               BLOGS
             </li>
@@ -135,6 +139,7 @@ const MainNavbar = () => {
             className="text-center py-2 "
             onMouseEnter={() => dispatch(hoverNav("CONTACTS"))}
             onMouseLeave={() => dispatch(hoverNavHalt(""))}
+            style={shortNavActive ? { pointerEvents: "none" } : {}}
           >
             CONTACTS
           </li>
@@ -143,6 +148,7 @@ const MainNavbar = () => {
               className="text-center py-2 "
               onMouseEnter={() => dispatch(hoverNav("MENU"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               MENU
             </li>
@@ -154,6 +160,7 @@ const MainNavbar = () => {
                 onMouseEnter={() => dispatch(hoverNav("DASHBOARD"))}
                 onMouseLeave={() => dispatch(hoverNavHalt(""))}
                 onClick={clickNav}
+                style={shortNavActive ? { pointerEvents: "none" } : {}}
               >
                 DASHBOARD
               </li>
@@ -164,6 +171,7 @@ const MainNavbar = () => {
               onMouseEnter={() => dispatch(hoverNav("MENU"))}
               onMouseLeave={() => dispatch(hoverNavHalt(""))}
               onClick={signIn}
+              style={shortNavActive ? { pointerEvents: "none" } : {}}
             >
               LOGIN
             </li>

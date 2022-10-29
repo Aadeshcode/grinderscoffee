@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import { uploadImageCallback } from "../../../utils/uploadImageCallback";
+import { loadingEnd, loadingStart } from "../../../action/globalAction";
 
 const Embed = ({ editor, format }) => {
   const urlInputRef = useRef();
@@ -21,9 +22,7 @@ const Embed = ({ editor, format }) => {
   });
 
   const handleButtonClick = async (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
-    // console.log(e.target.files[0])
+    dispatch(loadingStart());
     try {
       const file = e.target.files[0];
       const { data } = await uploadImageCallback(file);
@@ -35,6 +34,7 @@ const Embed = ({ editor, format }) => {
         width: "100%",
         height: "auto",
       });
+      dispatch(loadingEnd());
     } catch (error) {}
 
     // setShowInput((prev) => !prev);

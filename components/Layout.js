@@ -8,6 +8,7 @@ import MobileNavIcon from "./Navbar/MobileNavIcon";
 import MobileNavbar from "./Navbar/MobileNavbar";
 import { useRouter } from "next/router";
 import ShareModal from "./ShareModal";
+import ScreenLoader from "./ScreenLoader";
 const Layout = ({ children }) => {
   const cursor = useRef(null);
   const { scrollY } = useScroll();
@@ -16,6 +17,7 @@ const Layout = ({ children }) => {
   const activeNav = useSelector((state) => state.navActive);
   const activeLogo = useSelector((state) => state.logoHovered);
   const shortNavActive = useSelector((state) => state.shortNav);
+  const loading = useSelector((state) => state.loading);
   const [scrolledToBgW, setScrolledToBgW] = useState(false);
   const editCursor = (e) => {
     const { clientX: x, clientY: y } = e;
@@ -28,8 +30,11 @@ const Layout = ({ children }) => {
     });
   }, [scrollY]);
   return (
-    <main onMouseMove={(e) => editCursor(e)}>
-      <RouteShow scrolled={scrolledToBgW} />
+    <div
+      onMouseMove={(e) => editCursor(e)}
+      style={loading ? { pointerEvents: "none" } : {}}
+    >
+      {/* <RouteShow scrolled={scrolledToBgW} /> */}
       <div
         id="mouse"
         className={
@@ -73,8 +78,9 @@ const Layout = ({ children }) => {
       <MobileNavbar />
       <NavHover active={activeNav} />
       <ShareModal />
+      {loading ? <ScreenLoader /> : ""}
       <main className="main-body">{children}</main>
-    </main>
+    </div>
   );
 };
 

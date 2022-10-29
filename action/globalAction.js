@@ -4,6 +4,8 @@ import {
   HOVER_LOGO_HALT,
   HOVER_NAV,
   HOVER_NAV_HALT,
+  LOADING,
+  LOADING_HALT,
   MOB_NAV_HIDE,
   MOB_NAV_SHOW,
   SHORT_NAV,
@@ -74,5 +76,15 @@ export const shareModalOpen = (data) => (dispatch) => {
 export const shareModalClose = () => (dispatch) => {
   dispatch({
     type: HIDE_SHARE_MODAL,
+  });
+};
+export const loadingStart = () => (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+};
+export const loadingEnd = () => (dispatch) => {
+  dispatch({
+    type: LOADING_HALT,
   });
 };

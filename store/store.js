@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import {
+  loadingReducer,
   LogoHoverReducer,
   mobileNavReducer,
   NavHoverReducer,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   resetEditor: resetEditorReducer,
   updateEditor: updateEditorReducer,
   shareModal: shareModalReducer,
+  loading: loadingReducer,
 });
 function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware];

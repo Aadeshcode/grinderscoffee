@@ -1,27 +1,46 @@
-import { Center } from "@chakra-ui/react";
+import { Center, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useDispatch } from "react-redux";
+import { loadingEnd } from "../../action/globalAction";
 import ProductList from "../ProductList";
 const ListMenu = () => {
   const { data, isLoading, isError, error } = useQuery("getMenu", () =>
     axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/menu`)
   );
   const queryClient = useQueryClient();
+  const toast = useToast();
+  const dispatch = useDispatch();
   const deleteMutation = useMutation(
     (query) =>
       axios.delete(`${process.env.NEXT_PUBLIC_DOMAIN}/menu?name=${query}`),
     {
       onError: (error) => {
-        console.log(error.message);
+        toast({
+          title: error?.response?.data?.error,
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
       },
       onSuccess: (data) => {
-        console.log("calm doen");
         queryClient.invalidateQueries("getMenu");
-        console.log(data);
+        toast({
+          title: "Sucessfully Deleted",
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: "top-right",
+        });
+      },
+      onSettled: (data) => {
+        dispatch(loadingEnd());
       },
     }
   );
+
   if (data?.data && data?.data.length) {
     return (
       <div className="my-5 py-5 d-flex flex-wrap">
