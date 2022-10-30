@@ -14,6 +14,7 @@ import { BsPinterest } from "react-icons/bs";
 import { Divider } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 const OneBlog = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -26,8 +27,18 @@ const OneBlog = () => {
       return data;
     }
   });
+  if (!data.topic) {
+    return (
+      <div className="page-left p-lg-5 p-3">
+        <p className="display-6 p-lg-5">Not Found</p>
+      </div>
+    );
+  }
   return (
     <div>
+      <Head>
+        <title>{data?.topic}</title>
+      </Head>
       <div className="page-left">
         <div className="d-flex p-3 ">
           <AiOutlineArrowLeft />
@@ -126,14 +137,14 @@ const OneBlog = () => {
         <div className="py-5 rightpageslug">
           {data?.article && <ReadOnly value={data?.article} />}
         </div>
-        <div className="p-5 d-block d-lg-none ">
+        <div className="p-md-5 d-block d-lg-none ">
           <Divider />
-          <p className="font-caps text-center p-5">Read More</p>
+          <p className="font-caps text-center p-md-5 my-5">Read More</p>
 
-          <div className="p-5 container">
+          <div className="p-lg-5 container">
             {data?.recent?.map((blog) => (
               <div key={blog._id} className="row align-items-start my-5">
-                <div key={blog._id} className="col-2">
+                <div key={blog._id} className="col-4 col-md-2">
                   <Link href={`/blogs/${blog.slug}`}>
                     <a className="d-flex">
                       <div className="thumbnail-wrapper">
@@ -147,7 +158,7 @@ const OneBlog = () => {
                     </a>
                   </Link>
                 </div>
-                <div className="px-3 col-8">
+                <div className="px-3 col-8 col-md-10">
                   <p className="font-caps text-secondary">
                     Published on {blog.createdAt.substring(0, 10)}
                   </p>
