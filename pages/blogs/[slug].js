@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 import axios from "axios";
 import ReadOnly from "../../components/Slate/ReadOnly";
 import {
@@ -18,9 +18,14 @@ const OneBlog = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const slug = router.query.slug;
-  const { data, isLoading, isError, error } = useQuery(`${slug}`, () =>
-    axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/article/${slug}`)
-  );
+  const { data, isLoading, isError, error } = useQuery(`${slug}`, async () => {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_DOMAIN}/article/${slug}`
+    );
+    if (data) {
+      return data;
+    }
+  });
   return (
     <div>
       <div className="page-left">
@@ -30,23 +35,21 @@ const OneBlog = () => {
         </div>
         <div className="flex-center align-items-center mt-5">
           <div className="p-5 ">
-            <h1 className="font-caps display-1 text-center">
-              {data?.data?.topic}
-            </h1>
+            <h1 className="font-caps display-1 text-center">{data?.topic}</h1>
             <p className="text-center">
               Published By Grinders Coffee, Published on{" "}
-              {data?.data?.createdAt?.substring(0, 10)}{" "}
+              {data?.createdAt?.substring(0, 10)}{" "}
             </p>
 
             <span className="text-center"></span>
             <div
               className="btn pointer d-block"
-              onClick={() => dispatch(shareModalOpen(data?.data?.topic))}
+              onClick={() => dispatch(shareModalOpen(data?.topic))}
             >
               <p className="font-caps font-bold">Share</p>
               <div
                 className="flex-center mt-3"
-                onClick={() => dispatch(shareModalOpen(data?.data?.topic))}
+                onClick={() => dispatch(shareModalOpen(data?.topic))}
               >
                 <AiFillFacebook />
                 <AiOutlineTwitter />
@@ -60,7 +63,7 @@ const OneBlog = () => {
           <p className="font-caps text-center p-5">Read More</p>
 
           <div className="p container">
-            {data?.data?.recent?.map((blog) => (
+            {data?.recent?.map((blog) => (
               <div key={blog._id} className="row align-items-start my-5">
                 <div key={blog._id} className="col-3">
                   <Link href={`/blogs/${blog.slug}`}>
@@ -95,18 +98,16 @@ const OneBlog = () => {
         <div className="d-lg-none">
           <div className="flex-center align-items-center mt-5">
             <div className="p-md-5 p-3 ">
-              <h1 className="font-caps display-1 text-center">
-                {data?.data?.topic}
-              </h1>
+              <h1 className="font-caps display-1 text-center">{data?.topic}</h1>
               <p className="text-center">
                 Published By Grinders Coffee, Published on{" "}
-                {data?.data?.createdAt?.substring(0, 10)}{" "}
+                {data?.createdAt?.substring(0, 10)}{" "}
               </p>
 
               <span className="text-center"></span>
               <div
                 className="btn pointer d-block"
-                onClick={() => dispatch(shareModalOpen(data?.data?.topic))}
+                onClick={() => dispatch(shareModalOpen(data?.topic))}
               >
                 <p className="font-caps font-bold">Share</p>
                 <div
@@ -123,14 +124,14 @@ const OneBlog = () => {
         </div>
         <Divider />
         <div className="py-5 rightpageslug">
-          {data?.data?.article && <ReadOnly value={data?.data?.article} />}
+          {data?.article && <ReadOnly value={data?.article} />}
         </div>
         <div className="p-5 d-block d-lg-none ">
           <Divider />
           <p className="font-caps text-center p-5">Read More</p>
 
           <div className="p-5 container">
-            {data?.data?.recent?.map((blog) => (
+            {data?.recent?.map((blog) => (
               <div key={blog._id} className="row align-items-start my-5">
                 <div key={blog._id} className="col-2">
                   <Link href={`/blogs/${blog.slug}`}>
@@ -164,3 +165,43 @@ const OneBlog = () => {
 };
 
 export default OneBlog;
+
+export async function getStaticProps({ params }) {
+  try {
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery(`${params.slug}`, async () => {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/article/${params.slug}`
+      );
+      return data;
+    });
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    return { props: { data: {} }, revalidate: 1 };
+  }
+}
+
+export async function getStaticPaths() {
+  try {
+    const { data, error } = await axios.get(
+      `${process.env.NEXT_PUBLIC_DOMAIN}/article`
+    );
+
+    if (error || !data) {
+      return { notFound: true };
+    }
+    const paths = data.map((post) => ({
+      params: { slug: post.slug },
+    }));
+
+    return { paths, fallback: "blocking" };
+  } catch (error) {
+    return { notFound: true };
+  }
+}
