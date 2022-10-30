@@ -21,7 +21,7 @@ const ShareModal = () => {
   const share = router.asPath;
 
   const dispatch = useDispatch();
-  const domain = process.env.NEXT_PUBLIC_DOMAIN;
+  const domain = process.env.NEXT_PUBLIC_URL;
   const domainShare = domain + share;
   const { show, data } = useSelector((state) => state.shareModal);
   return (
