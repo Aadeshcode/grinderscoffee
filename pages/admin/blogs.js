@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { resetEditor } from "../../action/editorAction";
 import { loadingEnd, loadingStart } from "../../action/globalAction";
+import { getSession } from "next-auth/react";
+
 const Blog = () => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -263,3 +265,18 @@ const Blog = () => {
 };
 
 export default Blog;
+
+export async function getServerSideProps(context) {
+  try {
+    const session = await getSession(context);
+
+    if (session?.user?.email !== "adeshkandel@gmail.com") {
+      return { notFound: true };
+    }
+    return {
+      props: { session },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+}

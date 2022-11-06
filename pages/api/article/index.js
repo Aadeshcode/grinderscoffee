@@ -1,6 +1,7 @@
 import Article from "../../../schema/articleSchema";
 import connectDB from "../../../utils/connectDB";
 import slugify from "slugify";
+import protect from "../auth/protect";
 
 connectDB();
 
@@ -33,6 +34,10 @@ const getArticles = async (req, res) => {
   }
 };
 const createArticle = async (req, res) => {
+  const { isAdmin } = await protect(req, res);
+  if (!isAdmin) {
+    throw new Error("No Article Found");
+  }
   try {
     const { article, topic, category } = req.body;
     let thumbnail;

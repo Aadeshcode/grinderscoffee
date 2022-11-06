@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useQuery } from "react-query";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 const Menu = () => {
-  const { data, isLoading, isError, error } = useQuery("getMenu", () =>
+  const { data } = useQuery("getMenu", () =>
     axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/menu`)
   );
   const [selected, setSelected] = useState("coffee");
@@ -152,3 +152,24 @@ const Menu = () => {
 };
 
 export default Menu;
+
+export async function getStaticProps() {
+  try {
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery("getMenu", async () => {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/menu`
+      );
+      return data;
+    });
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    return { props: { data: {} }, revalidate: 1 };
+  }
+}

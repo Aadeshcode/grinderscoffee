@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { mobileNavOff } from "../../action/globalAction";
+import { GrClose } from "react-icons/gr";
 const MobileNavbar = () => {
   const dispatch = useDispatch();
   const mobileNavActive = useSelector((state) => state.mobileNav);
@@ -12,6 +13,21 @@ const MobileNavbar = () => {
   return (
     <>
       <div className=" ">
+        <motion.div
+          key="closebutton"
+          initial={{ opacity: 0, visibility: 0 }}
+          animate={{
+            opacity: mobileNavActive ? 1 : 0,
+          }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 2, type: "spring" }}
+          className="close-button-wrapper"
+          style={mobileNavActive ? {} : { pointerEvents: "none" }}
+          onClick={() => dispatch(mobileNavOff())}
+        >
+          <GrClose />
+        </motion.div>
+
         <motion.nav
           key="aboutvideo2"
           initial={{ opacity: 0, visibility: 0 }}
@@ -59,9 +75,7 @@ const MobileNavbar = () => {
           <ImFacebook style={{ height: "100px", fontSize: "20px" }} />
         </div> */}
       </div>
-      {/* <div>
-        <AiOutlineCloseCircle />
-      </div> */}
+      <div></div>
     </>
   );
 };

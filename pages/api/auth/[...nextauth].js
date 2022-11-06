@@ -26,10 +26,17 @@ export const authOptions = {
           credentials.password,
           result.password
         );
+
         if (!checkPassword) {
           throw new Error("Password doesnt match");
         }
         return { email: result.email, isAdmin: result.isAdmin };
+      },
+      callbacks: {
+        session: async (session, user) => {
+          session.isAdmin = false;
+          return Promise.resolve(session);
+        },
       },
     }),
   ],

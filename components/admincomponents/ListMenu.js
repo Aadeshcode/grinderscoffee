@@ -13,10 +13,16 @@ const ListMenu = () => {
   const toast = useToast();
   const dispatch = useDispatch();
   const deleteMutation = useMutation(
-    (query) =>
-      axios.delete(`${process.env.NEXT_PUBLIC_DOMAIN}/menu?name=${query}`),
+    async (query) => {
+      const { data, error } = await axios.delete(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/menu?name=${query}`
+      );
+      console.log(error);
+      return data;
+    },
     {
       onError: (error) => {
+        console.log(error);
         toast({
           title: error?.response?.data?.error,
           status: "error",

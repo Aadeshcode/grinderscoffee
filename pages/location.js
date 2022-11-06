@@ -27,7 +27,7 @@ const Location = () => {
               background: "none!important",
               height: "100%",
               width: "100%",
-              filter: "grayscale(100)",
+              // filter: "grayscale(100)",
             }}
           >
             <iframe
@@ -52,9 +52,37 @@ const Location = () => {
         transition={{ duration: 1 }}
       >
         <div
-          className="d-flex justify-content-center p-2 flex-column"
-          style={{ height: "100vh" }}
+          className="mapouter d-block d-lg-none"
+          style={{
+            position: "relative",
+            textAlign: "right",
+            height: "500px",
+            width: "100%",
+          }}
         >
+          <div
+            className="gmap_canvas"
+            style={{
+              overflow: "hidden",
+              background: "none!important",
+              height: "100%",
+              width: "100%",
+              // filter: "grayscale(100)",
+            }}
+          >
+            <iframe
+              height="100%"
+              width="100%"
+              id="gmap_canvas"
+              src="https://maps.google.com/maps?q=grinders%20coffee&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight="0"
+              marginWidth="0"
+            ></iframe>
+          </div>
+        </div>
+        <div className="d-flex justify-content-center p-3 flex-column location-page-text-wrap">
           <h1 className="display-3">OUR LOCATION</h1>
           <div>
             <p className="py-3" style={{ fontFamily: "regular" }}>

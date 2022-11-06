@@ -2,18 +2,24 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { useQuery } from "react-query";
+import { dehydrate, QueryClient, useQuery } from "react-query";
+import ScreenLoader from "../../components/ScreenLoader";
 
 const BlogShow = () => {
-  const { data, isLoading, isError, error } = useQuery(`getArticles`, () =>
-    axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/article`)
-  );
+  const { data } = useQuery(`getArticles`, async () => {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_DOMAIN}/article`
+    );
+    if (data) {
+      return data;
+    }
+  });
 
   return (
     <div>
       <div className="page-left">
         <div className="p-5 container">
-          {data?.data?.map((blog) => (
+          {data?.map((blog) => (
             <div key={blog._id} className="row align-items-start my-5">
               <div key={blog._id} className="col-2">
                 <Link href={`/blogs/${blog.slug}`}>
@@ -45,7 +51,7 @@ const BlogShow = () => {
       </div>
       <div className="page-right mt-5 mt-md-0">
         <div className="p-md-5  container">
-          {data?.data?.map((blog) => (
+          {data?.map((blog) => (
             <div key={blog._id} className="row align-items-start my-5">
               <div key={blog._id} className="col-4 col-md-2">
                 <Link href={`/blogs/${blog.slug}`}>
@@ -80,3 +86,23 @@ const BlogShow = () => {
 };
 
 export default BlogShow;
+export async function getStaticProps() {
+  try {
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery("getArticles", async () => {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_DOMAIN}/article`
+      );
+      return data;
+    });
+
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    return { props: { data: {} }, revalidate: 1 };
+  }
+}

@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import Article from "../../../schema/articleSchema";
 import connectDB from "../../../utils/connectDB";
+import protect from "../auth/protect";
 
 connectDB();
 
@@ -92,6 +93,11 @@ const editArticle = async (req, res) => {
 };
 const deleteArticle = async (req, res) => {
   try {
+    const { isAdmin } = await protect(req, res);
+    console.log(isAdmin, typeof isAdmin);
+    if (!isAdmin) {
+      throw new Error("Not Authorised");
+    }
     const { slug } = req.query;
     const getArticle = await Article.findOne({ slug });
     if (!getArticle) {

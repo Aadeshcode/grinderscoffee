@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  margin-bottom: 6rem;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 15px;
@@ -692,9 +693,21 @@ svg {
 .thumbnail-wrapper img {
   object-fit: cover;
 }
+.location-page-text-wrap {
+  height: 100vh;
+}
+.close-button-wrapper {
+  position: fixed;
+  top: 20px;
+  left: 80%;
+  z-index: 9999;
+}
 @media screen and (max-width: 992px) {
   .rightpageslug {
     padding: 0 1rem 0 1rem;
+  }
+  .location-page-text-wrap {
+    height: auto;
   }
   .page-left {
     display: none;
