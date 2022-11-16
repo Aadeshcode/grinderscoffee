@@ -36,7 +36,7 @@ export default function Home() {
             poster="https://noccoffeeco.com/media/2019/03/home_gough.jpg"
             className="home-vid__vid"
           >
-            <source src="/pics/home_gough.mp4" type="video/mp4" />
+            <source src="/pics/grindershome.mp4" type="video/mp4" />
           </video>
         </div>
         <div className=" home-vid bg-white d-block d-lg-none">
