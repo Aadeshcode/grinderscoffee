@@ -50,7 +50,7 @@ export default function Home() {
             data-id="0"
           >
             <source
-              src="https://noccoffeeco.com/media/2021/05/grindershome.m4v"
+              src="/pics/grindershome.m4v"
               type="video/mp4"
             />
           </video>

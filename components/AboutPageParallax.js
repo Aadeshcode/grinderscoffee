@@ -50,10 +50,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
             className="nav-hover__img-item page-left__media"
             data-id="0"
           >
-            <source
-              src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
-              type="video/mp4"
-            />
+            <source src="/pics/pouring.m4v" type="video/mp4" />
           </video>
         </motion.div>
         <div className="p-3 px-lg-0 py-5 py-lg-0">
@@ -85,7 +82,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
             data-id="1"
           >
             <source
-              src="https://noccoffeeco.com/media/2019/03/about_latte.mp4"
+              src="/pics/latte.m4v"
               type="video/mp4"
             />
           </video>
@@ -134,7 +131,7 @@ export default function AboutPageParallax({ setSelected, selected, clicked }) {
             data-id="2"
           >
             <source
-              src="https://noccoffeeco.com/media/2021/05/Food.mp4"
+              src="/pics/burger.mp4"
               type="video/mp4"
             />
           </video>
