@@ -168,7 +168,7 @@ const About = () => {
           data-id="0"
         >
           <source
-            src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
+            src="/pics/pouring.m4v"
             type="video/mp4"
           />
         </video>
@@ -192,7 +192,7 @@ const About = () => {
           data-id="1"
         >
           <source
-            src="https://noccoffeeco.com/media/2019/03/about_latte.mp4"
+            src="/pics/latte.m4v"
             type="video/mp4"
           />
         </video>
@@ -215,7 +215,7 @@ const About = () => {
           data-id="2"
         >
           <source
-            src="https://noccoffeeco.com/media/2021/05/Food.mp4"
+            src="/pics/burger.mp4"
             type="video/mp4"
           />
         </video>

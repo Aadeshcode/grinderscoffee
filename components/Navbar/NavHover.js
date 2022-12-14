@@ -27,10 +27,7 @@ const NavHover = ({ active }) => {
             data-id="0"
             style={active === "ABOUT" ? { opacity: 1 } : { opacity: 0 }}
           >
-            <source
-              src="https://noccoffeeco.com/media/2021/05/About.mp4"
-              type="video/mp4"
-            />
+            <source src="/pics/pouring.m4v" type="video/mp4" />
           </video>
         </div>
         <div className="nav-hover-image">

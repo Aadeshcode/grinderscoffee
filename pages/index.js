@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(shortNavHalt());
   }, [dispatch]);
-
+  
   return (
     <>
       <motion.div
@@ -36,7 +36,7 @@ export default function Home() {
             poster="https://noccoffeeco.com/media/2019/03/home_gough.jpg"
             className="home-vid__vid"
           >
-            <source src="/pics/grindershome.mp4" type="video/mp4" />
+            <source src="/pics/grindershome.m4v" type="video/mp4" />
           </video>
         </div>
         <div className=" home-vid bg-white d-block d-lg-none">
@@ -50,7 +50,7 @@ export default function Home() {
             data-id="0"
           >
             <source
-              src="https://noccoffeeco.com/media/2021/05/Home_portrait.mp4"
+              src="https://noccoffeeco.com/media/2021/05/grindershome.m4v"
               type="video/mp4"
             />
           </video>
